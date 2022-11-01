@@ -1,11 +1,13 @@
+import config from '../config';
+
 const makeRequest = async function (method, endpoint, body) {
-    const dataBaseUrl = 'http://localhost:5000/pets';
+    const dataBaseUrl = `${config.SERVER_CONNECTION}/pets`;
 
     const request = {
         method,
         headers: {
-            'Content-Type': 'application/json'
-        }
+            'Content-Type': 'application/json',
+        },
     };
 
     // That way there won't be an error on GET request

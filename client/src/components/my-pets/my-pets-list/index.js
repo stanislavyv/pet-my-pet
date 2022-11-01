@@ -9,24 +9,27 @@ const MyPetsList = ({ username }) => {
     const [pets, setPets] = useState([]);
 
     useEffect(() => {
-        getAllPets()
-            .then(pets => {
-                const userPets = pets.filter(p => p.creator?.toLowerCase() === username.toLowerCase());
-                setPets(userPets);
-            })
+        getAllPets().then((pets) => {
+            const userPets = pets.filter(
+                (p) => p.creator?.toLowerCase() === username.toLowerCase()
+            );
+            setPets(userPets);
+        });
     }, [username]);
 
     return (
         <>
-            {pets.length > 0 ?
-                (<PetsList>
-                    {pets.map(p => {
-                        return <MyPetCard key={p.id} {...p} />
+            {pets.length > 0 ? (
+                <PetsList>
+                    {pets.map((p) => {
+                        return <MyPetCard key={p._id} {...p} />;
                     })}
-                </PetsList>) :
-                (<div>You haven't added pets yet!</div>)}
+                </PetsList>
+            ) : (
+                <div>You haven't added pets yet!</div>
+            )}
         </>
     );
-}
+};
 
 export default MyPetsList;

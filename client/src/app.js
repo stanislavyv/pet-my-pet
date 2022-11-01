@@ -1,37 +1,34 @@
 import React from 'react';
 
-import "./utils/firebase";
+import './utils/firebase';
 import GlobalStyles from './GlobalStyles';
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate } from 'react-router-dom';
 
-import CustomErrorBoundary from "./components/custom-error-boundary";
-import Header from "./components/header";
-import Dashboard from "./components/dashboard";
-import CreatePet from "./components/forms/create-pet";
+import CustomErrorBoundary from './components/custom-error-boundary';
+import Header from './components/header';
+import Dashboard from './components/dashboard';
+import CreatePet from './components/forms/create-pet';
 import EditPet from './components/pet-details/edit-pet';
-import RegisterForm from "./components/forms/auth/register";
-import LoginForm from "./components/forms/auth/login";
-import MyPets from "./components/my-pets";
+import RegisterForm from './components/forms/auth/register';
+import LoginForm from './components/forms/auth/login';
+import MyPets from './components/my-pets';
 import OtherPetDetails from './components/pet-details/other-pet-details';
-import Notification from "./components/notification";
-import Footer from "./components/footer";
+import Notification from './components/notification';
+import Footer from './components/footer';
 
 import AuthProvider from './contexts/AuthContext';
-import NotificationProvider from "./contexts/NotificationContext";
+import NotificationProvider from './contexts/NotificationContext';
 
-import AuthRoute from "./hoc/AuthRoute";
+import AuthRoute from './hoc/AuthRoute';
 import AuthFormRoute from './hoc/AuthFormRoute';
 import Loading from './components/loading';
 
-//TODO: 
+//TODO:
 // THINK OF A WAY TO USE AUTH CONTEXT IN APP COMP
-// SEE useSignInWithEmailAndPassword FOR ERROR HANDLING ON 
+// SEE useSignInWithEmailAndPassword FOR ERROR HANDLING ON
 //     ATTEMPTED LOGIN WITH INVALID CREDENTIALNS
-// !!!!!!!!! EXECUTE THE HOOK FN ONCE IN THE HOOK FILE AND EXPORT ITS VALUE!!!!!!!!!
-// TEST IF YOU CAN REPLACE CONTEXT WITH GLOBAL HOOK
 // See how to make auth guard without HOC
 function App() {
-
     return (
         <>
             <GlobalStyles />
@@ -62,9 +59,18 @@ function App() {
                             />
                             <Route
                                 path="/register"
-                                element={<AuthFormRoute children={<RegisterForm />} />}
+                                element={
+                                    <AuthFormRoute
+                                        children={<RegisterForm />}
+                                    />
+                                }
                             />
-                            <Route path="/login" element={<AuthFormRoute children={<LoginForm />} />} />
+                            <Route
+                                path="/login"
+                                element={
+                                    <AuthFormRoute children={<LoginForm />} />
+                                }
+                            />
                             <Route
                                 path="/my-pets"
                                 element={<AuthRoute children={<MyPets />} />}
@@ -79,7 +85,6 @@ function App() {
             </AuthProvider>
 
             <Footer />
-
         </>
     );
 }

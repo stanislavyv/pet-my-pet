@@ -1,7 +1,7 @@
-import * as requester from "./requester";
+import * as requester from './requester';
 
 export const getAllPets = function (category) {
-    const queryString = category ? `?category=${category}` : "";
+    const queryString = category ? `?category=${category}` : '';
 
     try {
         return requester.get(queryString);
@@ -10,12 +10,10 @@ export const getAllPets = function (category) {
     }
 };
 
-export const getPetById = async function (id = "") {
-    const queryString = `?id=${id}`;
-
+export const getPetById = async function (id = '') {
     try {
-        const pet = await requester.get(queryString);
-        return pet[0];
+        const pet = await requester.get(`/${id}`);
+            return pet;
     } catch (e) {
         console.log(e.message);
     }
@@ -45,7 +43,9 @@ const updateLikesList = function (id, peopleLiked) {
 
 export const likePet = async function ({ likes, id }, username) {
     try {
-        const res = await requester.patch(id, { likes: (Number(likes) + 1).toString() })
+        const res = await requester.patch(id, {
+            likes: (Number(likes) + 1).toString(),
+        });
         const peopleLiked = res.peopleLiked;
         peopleLiked.push(username);
 
@@ -58,7 +58,9 @@ export const likePet = async function ({ likes, id }, username) {
 
 export const unpet = async function ({ likes, id }, username) {
     try {
-        const res = await requester.patch(id, { likes: (Number(likes) - 1).toString() })
+        const res = await requester.patch(id, {
+            likes: (Number(likes) - 1).toString(),
+        });
         const peopleLiked = res.peopleLiked;
 
         const userIndex = peopleLiked.indexOf(username);
