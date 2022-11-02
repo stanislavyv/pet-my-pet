@@ -19,20 +19,26 @@ const DashboardPetsList = ({ category }) => {
     }, [category, notification.message]);
 
     return (
-        <PetsList>
-            {pets?.map((pet) => {
-                if (isLoggedIn) {
-                    return pet.creator.toLowerCase() ===
-                        username.toLowerCase() ? (
-                        <MyPetCard key={pet._id} {...pet} />
-                    ) : (
-                        <OtherPetCard key={pet._id} {...pet} />
-                    );
-                }
+        <>
+            {pets.length > 0 ? (
+                <PetsList>
+                    {pets.map((pet) => {
+                        if (isLoggedIn) {
+                            return pet.creator.toLowerCase() ===
+                                username.toLowerCase() ? (
+                                <MyPetCard key={pet._id} {...pet} />
+                            ) : (
+                                <OtherPetCard key={pet._id} {...pet} />
+                            );
+                        }
 
-                return <OtherPetCard key={pet._id} {...pet} />;
-            })}
-        </PetsList>
+                        return <OtherPetCard key={pet._id} {...pet} />;
+                    })}
+                </PetsList>
+            ) : (
+                <h1>Nothing to see here...</h1>
+            )}
+        </>
     );
 };
 

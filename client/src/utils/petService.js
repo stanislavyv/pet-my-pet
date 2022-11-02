@@ -2,7 +2,6 @@ import * as requester from './requester';
 
 export const getAllPets = function (category) {
     const queryString = category ? `/categories/${category}` : '';
-    console.log(category);
 
     try {
         return requester.get(queryString);

@@ -1,6 +1,8 @@
 const routes = require('express').Router();
 const petService = require('../services/petService');
 
+const authenticate = require('../middlewares/authenticate');
+
 // GET ALL PETS
 routes.get('/', (req, res) => {
     petService.getAll().then((pets) => {

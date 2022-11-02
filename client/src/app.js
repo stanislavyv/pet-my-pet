@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './utils/firebase';
+import './config/firebase';
 import GlobalStyles from './GlobalStyles';
 import { Route, Routes, Navigate } from 'react-router-dom';
 

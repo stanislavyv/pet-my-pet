@@ -4,28 +4,59 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
-} from "firebase/auth";
+} from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
-export const auth = getAuth();
+const auth = getAuth();
+
+const setAccessToken = (token) => {
+    localStorage.setItem('accessToken', token);
+};
 
 export const onStateChange = (callback) => {
     onAuthStateChanged(auth, callback);
 };
 
-export const createUser = (username, password) => {
-    return createUserWithEmailAndPassword(auth, username, password)
-        .catch(e => {
-            console.log(e);
-        });
+export const createUser = async (username, password) => {
+    try {
+        const result = await createUserWithEmailAndPassword(
+            auth,
+            username,
+            password
+        );
+        const token = await result.user.getIdToken();
+        setAccessToken(token);
+
+        return result;
+    } catch (e) {
+        console.log(e);
+    }
 };
 
-export const signIn = (username, password) => {
-    return signInWithEmailAndPassword(auth, username, password)
-        .catch(e => {
-            console.log(e);
-        });
+export const signIn = async (username, password) => {
+    try {
+        const result = await signInWithEmailAndPassword(
+            auth,
+            username,
+            password
+        );
+        const token = await result.user.getIdToken();
+        setAccessToken(token);
+
+        return result;
+    } catch (e) {
+        console.log(e);
+    }
 };
 
 export const logout = () => {
-    return signOut(auth).catch(console.log);
+    signOut(auth)
+        .then(() => {
+            localStorage.removeItem('accessToken');
+        })
+        .catch(console.log);
+};
+
+export const useFirebaseAuthState = () => {
+    return useAuthState(auth);
 };

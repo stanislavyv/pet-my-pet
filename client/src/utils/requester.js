@@ -2,10 +2,12 @@ import config from '../config';
 
 const makeRequest = async function (method, endpoint, body) {
     const dataBaseUrl = `${config.SERVER_CONNECTION}/pets`;
+    const accessToken = localStorage.getItem('accessToken');
 
     const request = {
         method,
         headers: {
+            Authorization: `Bearer ${accessToken}`,
             'Content-Type': 'application/json',
         },
     };
@@ -16,7 +18,9 @@ const makeRequest = async function (method, endpoint, body) {
     }
 
     const res = await fetch(`${dataBaseUrl}/${endpoint}`, request);
-    const data = res.json();
+    const data = await res.json();
+    
+    if (data.message) throw new Error(data.message);
 
     return data;
 };

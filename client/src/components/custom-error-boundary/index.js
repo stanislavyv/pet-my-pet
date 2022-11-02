@@ -1,5 +1,5 @@
-import { Component } from "react";
-import styled from "styled-components";
+import { Component } from 'react';
+import styled from 'styled-components';
 
 const StyledErrorBoundary = styled.section`
     width: 300px;
@@ -11,13 +11,14 @@ export default class CustomErrorBoundary extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { hasError: false };
+        this.state = { hasError: false, message: '' };
     }
 
     static getDerivedStateFromError(error) {
         // returns new state
         return {
             hasError: true,
+            message: error.message,
         };
     }
 
@@ -30,7 +31,11 @@ export default class CustomErrorBoundary extends Component {
             return (
                 <StyledErrorBoundary>
                     <h2>Error!</h2>
-                    <p>There was a problem with your request, please try again later.</p>
+                    <p>
+                        There was a problem with your request, please try again
+                        later.
+                        {this.state.message}
+                    </p>
                 </StyledErrorBoundary>
             );
         }
