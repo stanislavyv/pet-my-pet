@@ -3,6 +3,8 @@ const EMAIL_PATTERN =
 
 const PASSWORD_PATTERN = /^[a-zA-Z0-9!@#$%^&*+\-_]{6,}$/;
 
+const IMAGE_URL_PATTERN = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/;
+
 export const isDescriptionValid = (value) => {
     return value.length >= 10;
 };
@@ -21,4 +23,8 @@ export const isPasswordRightFormat = (value) => {
 
 export const isEmailValid = (value) => {
     return String(value).toLowerCase().match(EMAIL_PATTERN);
+};
+
+export const isImageUrlValid = (value) => {
+    return String(value).match(IMAGE_URL_PATTERN);
 };

@@ -9,7 +9,7 @@ const petSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    imageUrl: {
+    imageURL: {
         type: String,
         required: true,
     },
@@ -27,8 +27,7 @@ const petSchema = new mongoose.Schema({
     },
     peopleLiked: [
         {
-            type: mongoose.Types.ObjectId,
-            ref: 'User',
+            type: String,
             required: true,
         },
     ],

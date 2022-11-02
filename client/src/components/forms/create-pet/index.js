@@ -1,37 +1,41 @@
-import { useReducer } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../contexts/AuthContext";
-import { useNotification } from "../../../contexts/NotificationContext";
+import { useState, useReducer } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../contexts/AuthContext';
+import { useNotification } from '../../../contexts/NotificationContext';
 
-import { createPet } from "../../../utils/petService";
+import { createPet } from '../../../utils/petService';
 
-import * as formValidator from "../../../utils/formValidator";
+import * as formValidator from '../../../utils/formValidator';
 
-import InputError from "../../shared/input-error";
-import Button from "../../shared/button";
-import Form from "../../shared/form";
-import Fieldset from "../../shared/form/fieldset";
-import FormLegend from "../../shared/form/form-legend";
-import Field from "../../shared/form/field";
+import InputError from '../../shared/input-error';
+import Button from '../../shared/button';
+import Form from '../../shared/form';
+import Fieldset from '../../shared/form/fieldset';
+import FormLegend from '../../shared/form/form-legend';
+import Field from '../../shared/form/field';
 
 const errorReducer = (state, { type, payload }) => {
     switch (type) {
-        case "name":
+        case 'name':
             return { ...state, name: payload };
-        case "description":
+        case 'description':
             return { ...state, description: payload };
+        case 'imageURL':
+            return { ...state, imageURL: payload };
         default:
             return state;
     }
-}
+};
 
 const CreatePet = () => {
     const [errors, dispatch] = useReducer(errorReducer, {
         name: '',
-        description: ''
+        description: '',
+        imageURL: '',
     });
+    const [isValid, setIsValid] = useState(false);
     const { username } = useAuth();
-    const { notifyInfo } = useNotification();
+    const { notifyInfo, notifyError } = useNotification();
     const navigate = useNavigate();
 
     const onNameBlurHandler = (e) => {
@@ -40,8 +44,10 @@ const CreatePet = () => {
 
         if (!formValidator.isPetNameValid(nameValue)) {
             dispatch({ type, payload: 'Name is too short!' });
+            setIsValid(false);
         } else {
             dispatch({ type, payload: '' });
+            setIsValid(true);
         }
     };
 
@@ -50,16 +56,36 @@ const CreatePet = () => {
         const type = 'description';
 
         if (!formValidator.isDescriptionValid(descriptionValue)) {
-            dispatch({ type, payload: 'Description is too short!' });
+            dispatch({
+                type,
+                payload: 'Description must be between 10 and 50 characters!',
+            });
+            setIsValid(false);
         } else {
             dispatch({ type, payload: '' });
+            setIsValid(true);
+        }
+    };
+
+    const onImageUrlBlurHandler = (e) => {
+        const imageUrlValue = e.target.value;
+        const type = 'imageURL';
+
+        if (!formValidator.isImageUrlValid(imageUrlValue)) {
+            dispatch({ type, payload: 'Please provide a valid image link.' });
+            setIsValid(false);
+        } else {
+            dispatch({ type, payload: '' });
+            setIsValid(true);
         }
     };
 
     const onCreateSubmitHandler = (e) => {
         e.preventDefault();
 
-        if (errors.name || errors.description) { return; }
+        if (!isValid) {
+            return;
+        }
 
         const petObject = {
             name: e.target.name.value,
@@ -68,19 +94,25 @@ const CreatePet = () => {
             category: e.target.category.value.toLowerCase(),
             likes: 0,
             creator: username,
-            peopleLiked: []
+            peopleLiked: [],
         };
 
-        createPet(petObject);
-        navigate('/pets');
-        notifyInfo(`Successfully added ${petObject.name}!`);
+        createPet(petObject).then((res) => {
+            if (res.message) {
+                notifyError(res.message);
+                return;
+            } else {
+                navigate('/pets');
+                notifyInfo(`Successfully added ${petObject.name}!`);
+            }
+        });
     };
 
     return (
         <Form onSubmitHandler={onCreateSubmitHandler}>
             <Fieldset>
                 <FormLegend>Add new Pet</FormLegend>
-                <Field type='name'>
+                <Field type="name">
                     <input
                         type="text"
                         name="name"
@@ -91,7 +123,7 @@ const CreatePet = () => {
                 </Field>
                 <InputError message={errors.name} />
 
-                <Field type='description'>
+                <Field type="description">
                     <textarea
                         rows="4"
                         cols="45"
@@ -105,15 +137,17 @@ const CreatePet = () => {
                 </Field>
                 <InputError message={errors.description} />
 
-                <Field type='image'>
+                <Field type="image">
                     <input
                         type="text"
                         name="imageURL"
                         id="image"
                         placeholder="Image"
+                        onBlur={onImageUrlBlurHandler}
                     />
                 </Field>
-                <Field type='category'>
+                <InputError message={errors.imageURL} />
+                <Field type="category">
                     <select type="text" name="category">
                         <option>Cat</option>
                         <option>Dog</option>
@@ -123,12 +157,10 @@ const CreatePet = () => {
                     </select>
                 </Field>
 
-                <Button type='submit'>
-                    Add Pet
-                </Button>
+                <Button type="submit">Add Pet</Button>
             </Fieldset>
         </Form>
     );
-}
+};
 
 export default CreatePet;

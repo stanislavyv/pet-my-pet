@@ -1,13 +1,13 @@
 import config from '../config';
+import { getAccessToken } from './authService';
 
 const makeRequest = async function (method, endpoint, body) {
     const dataBaseUrl = `${config.SERVER_CONNECTION}/pets`;
-    const accessToken = localStorage.getItem('accessToken');
 
     const request = {
         method,
         headers: {
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: `Bearer ${await getAccessToken()}`,
             'Content-Type': 'application/json',
         },
     };

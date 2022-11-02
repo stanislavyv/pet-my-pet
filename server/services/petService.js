@@ -1,23 +1,22 @@
 const Pet = require('../models/Pet');
 
-const getAll = () => {
+exports.getAll = () => {
     return Pet.find();
 };
 
-const getByCategory = (category = '') => {
-    return Pet.find({ category: category });
+exports.getByCategory = (category = '') => {
+    return Pet.find({ category });
 };
 
-const getById = (id) => {
+exports.getById = (id) => {
     return Pet.findById(id);
 };
 
-const create = (data) => {
-    
+exports.createPet = (data) => {
+    const pet = new Pet(data);
+    return pet.save();
 };
 
-module.exports = {
-    getAll,
-    getByCategory,
-    getById,
+exports.doesPetExist = async (name) => {
+    return Boolean(await Pet.findOne({ name }));
 };

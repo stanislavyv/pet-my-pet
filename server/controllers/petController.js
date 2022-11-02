@@ -1,11 +1,19 @@
 const routes = require('express').Router();
-const petService = require('../services/petService');
+const {
+    getAll,
+    getById,
+    getByCategory,
+    createPet,
+    doesPetExist,
+} = require('../services/petService');
 
 const authenticate = require('../middlewares/authenticate');
+const { validatePet } = require('../middlewares/validator');
+const { validationResult } = require('express-validator');
 
 // GET ALL PETS
 routes.get('/', (req, res) => {
-    petService.getAll().then((pets) => {
+    getAll().then((pets) => {
         res.status(200).json(pets);
     });
 });
@@ -15,7 +23,7 @@ routes.get('/categories/:category', (req, res) => {
     const category = req.params.category;
 
     try {
-        petService.getByCategory(category).then((pets) => {
+        getByCategory(category).then((pets) => {
             res.status(200).json(pets);
         });
     } catch (e) {
@@ -28,7 +36,7 @@ routes.get('/:id', (req, res) => {
     const id = req.params.id;
 
     try {
-        petService.getById(id).then((pet) => {
+        getById(id).then((pet) => {
             res.status(200).json(pet);
         });
     } catch (e) {
@@ -37,8 +45,26 @@ routes.get('/:id', (req, res) => {
 });
 
 // CREATE
-routes.post('/create', authenticate(), (req, res) => {
-    const data = req.body;  
+routes.post('/', authenticate(), validatePet, async (req, res) => {
+    const data = req.body;
+
+    const petExists = await doesPetExist(data.name);
+
+    if (petExists) {
+        return res.json({
+            message: 'A pet with that name already exists.',
+        });
+    }
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.json({ message: errors.array()[0].msg });
+    }
+
+    createPet(data).then((result) => {
+        return res.status(201).json(result);
+    });
 });
 
 module.exports = routes;

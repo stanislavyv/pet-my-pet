@@ -7,7 +7,7 @@ import { signIn } from '../../../../utils/authService';
 import AuthForm from '..';
 
 const LoginForm = () => {
-    const [isValid, setIsValid] = useState(false);
+    const [isValid, setIsValid] = useState(true);
     const { notifyError } = useNotification();
     const navigate = useNavigate();
 

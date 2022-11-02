@@ -9,10 +9,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 const auth = getAuth();
 
-const setAccessToken = (token) => {
-    localStorage.setItem('accessToken', token);
-};
-
 export const onStateChange = (callback) => {
     onAuthStateChanged(auth, callback);
 };
@@ -24,8 +20,6 @@ export const createUser = async (email, password) => {
             email,
             password
         );
-        const token = await result.user.getIdToken();
-        setAccessToken(token);
 
         return result;
     } catch (e) {
@@ -36,8 +30,6 @@ export const createUser = async (email, password) => {
 export const signIn = async (email, password) => {
     try {
         const result = await signInWithEmailAndPassword(auth, email, password);
-        const token = await result.user.getIdToken();
-        setAccessToken(token);
 
         return result;
     } catch (e) {
@@ -46,13 +38,15 @@ export const signIn = async (email, password) => {
 };
 
 export const logout = () => {
-    signOut(auth)
-        .then(() => {
-            localStorage.removeItem('accessToken');
-        })
-        .catch(console.log);
+    signOut(auth).catch(console.log);
 };
 
 export const useFirebaseAuthState = () => {
     return useAuthState(auth);
+};
+
+export const getAccessToken = async () => {
+    if (!auth.currentUser) return undefined;
+
+    return auth.currentUser.getIdToken();
 };
