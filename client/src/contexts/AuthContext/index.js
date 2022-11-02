@@ -18,7 +18,7 @@ const AuthProvider = ({ children }) => {
     const authValue = useMemo(
         () => ({
             loading,
-            isLoggedIn: Boolean(localStorage.getItem('accessToken')),
+            isLoggedIn: Boolean(user),
             username: user?.email,
         }),
         [user, loading]

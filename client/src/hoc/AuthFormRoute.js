@@ -1,11 +1,9 @@
-import { useAuth } from "../contexts/AuthContext";
-
 import { Navigate } from 'react-router-dom';
 
 const AuthFormRoute = ({ children }) => {
-    const { isLoggedIn } = useAuth();
+    const isLoggedIn = Boolean(localStorage.getItem('accessToken'));
 
-    return (!isLoggedIn ? children : <Navigate to='/pets' />);
-}
+    return !isLoggedIn ? children : <Navigate to="/pets" />;
+};
 
 export default AuthFormRoute;
