@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { useAuth } from '../../contexts/AuthContext';
 
 const StyledLoading = styled.div`
     position: absolute;
@@ -10,13 +9,7 @@ const StyledLoading = styled.div`
 `;
 
 const Loading = () => {
-    const { loading } = useAuth();
-    
-    return (
-        <>
-            {loading ? <StyledLoading /> : null}
-        </>
-    );
-}
+    return <StyledLoading />;
+};
 
 export default Loading;

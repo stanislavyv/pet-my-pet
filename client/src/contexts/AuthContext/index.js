@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext, useMemo } from 'react';
 
 import { useFirebaseAuthState, onStateChange } from '../../utils/authService';
 
+import Loading from '../../components/loading';
+
 const AuthContext = React.createContext({});
 AuthContext.displayName = 'AuthContext';
 
@@ -16,16 +18,22 @@ const AuthProvider = ({ children }) => {
     const authValue = useMemo(
         () => ({
             loading,
-            isLoggedIn: Boolean(user),
+            isLoggedIn: Boolean(localStorage.getItem('accessToken')),
             username: user?.email,
         }),
         [user, loading]
     );
 
     return (
-        <AuthContext.Provider value={authValue}>
-            {children}
-        </AuthContext.Provider>
+        <>
+            {loading ? (
+                <Loading />
+            ) : (
+                <AuthContext.Provider value={authValue}>
+                    {children}
+                </AuthContext.Provider>
+            )}
+        </>
     );
 };
 

@@ -21,7 +21,6 @@ import NotificationProvider from './contexts/NotificationContext';
 
 import AuthRoute from './hoc/AuthRoute';
 import AuthFormRoute from './hoc/AuthFormRoute';
-import Loading from './components/loading';
 
 //TODO:
 // THINK OF A WAY TO USE AUTH CONTEXT IN APP COMP
@@ -33,7 +32,6 @@ function App() {
         <>
             <GlobalStyles />
             <AuthProvider>
-                <Loading />
                 <Header />
 
                 <CustomErrorBoundary>
