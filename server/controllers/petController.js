@@ -8,14 +8,26 @@ routes.get('/', (req, res) => {
     });
 });
 
-// GET ONE PET
+// GET BY CATEGORY
+routes.get('/categories/:category', (req, res) => {
+    const category = req.params.category;
+
+    try {
+        petService.getByCategory(category).then((pets) => {
+            res.status(200).json(pets);
+        });
+    } catch (e) {
+        console.log(e);
+    }
+});
+
+// GET BY ID
 routes.get('/:id', (req, res) => {
     const id = req.params.id;
 
     try {
         petService.getById(id).then((pet) => {
             res.status(200).json(pet);
-            console.log(pet);
         });
     } catch (e) {
         console.log(e);

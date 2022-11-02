@@ -1,7 +1,8 @@
 import * as requester from './requester';
 
 export const getAllPets = function (category) {
-    const queryString = category ? `?category=${category}` : '';
+    const queryString = category ? `/categories/${category}` : '';
+    console.log(category);
 
     try {
         return requester.get(queryString);
@@ -13,7 +14,7 @@ export const getAllPets = function (category) {
 export const getPetById = async function (id = '') {
     try {
         const pet = await requester.get(`/${id}`);
-            return pet;
+        return pet;
     } catch (e) {
         console.log(e.message);
     }
