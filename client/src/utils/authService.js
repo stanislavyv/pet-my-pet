@@ -17,11 +17,11 @@ export const onStateChange = (callback) => {
     onAuthStateChanged(auth, callback);
 };
 
-export const createUser = async (username, password) => {
+export const createUser = async (email, password) => {
     try {
         const result = await createUserWithEmailAndPassword(
             auth,
-            username,
+            email,
             password
         );
         const token = await result.user.getIdToken();
@@ -33,13 +33,9 @@ export const createUser = async (username, password) => {
     }
 };
 
-export const signIn = async (username, password) => {
+export const signIn = async (email, password) => {
     try {
-        const result = await signInWithEmailAndPassword(
-            auth,
-            username,
-            password
-        );
+        const result = await signInWithEmailAndPassword(auth, email, password);
         const token = await result.user.getIdToken();
         setAccessToken(token);
 

@@ -18,9 +18,7 @@ const makeRequest = async function (method, endpoint, body) {
     }
 
     const res = await fetch(`${dataBaseUrl}/${endpoint}`, request);
-    const data = await res.json();
-    
-    if (data.message) throw new Error(data.message);
+    const data = res.json();
 
     return data;
 };

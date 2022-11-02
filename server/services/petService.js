@@ -12,6 +12,10 @@ const getById = (id) => {
     return Pet.findById(id);
 };
 
+const create = (data) => {
+    
+};
+
 module.exports = {
     getAll,
     getByCategory,

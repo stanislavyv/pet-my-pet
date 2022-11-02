@@ -36,4 +36,9 @@ routes.get('/:id', (req, res) => {
     }
 });
 
+// CREATE
+routes.post('/create', authenticate(), (req, res) => {
+    const data = req.body;  
+});
+
 module.exports = routes;

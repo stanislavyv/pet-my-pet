@@ -12,6 +12,7 @@ const authenticate = () => {
             const decoded = await admin.auth().verifyIdToken(token);
 
             if (decoded) {
+                req.uid = decoded.uid;
                 return next();
             }
 
