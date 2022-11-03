@@ -5,7 +5,7 @@ import { getAccessToken } from '../utils/authService';
 import { useAuth } from '../contexts/AuthContext';
 
 const AuthRoute = ({ children }) => {
-    const isLoggedIn = Boolean(localStorage.getItem('accessToken'));
+    const isLoggedIn = Boolean(localStorage.getItem('uid'));
 
     return isLoggedIn ? children : <Navigate to="/login" />;
 };

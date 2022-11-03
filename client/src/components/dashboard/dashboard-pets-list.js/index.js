@@ -24,7 +24,7 @@ const DashboardPetsList = ({ category }) => {
                 <PetsList>
                     {pets.map((pet) => {
                         if (isLoggedIn) {
-                            return pet.creator.toLowerCase() ===
+                            return pet.creator.username.toLowerCase() ===
                                 username.toLowerCase() ? (
                                 <MyPetCard key={pet._id} {...pet} />
                             ) : (

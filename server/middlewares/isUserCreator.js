@@ -4,7 +4,7 @@ module.exports = () => {
     return async (req, res, next) => {
         const pet = await petService.getById(req.params.id);
 
-        if (pet.creator == req.uid) {
+        if (pet.creator.id == req.uid) {
             return next();
         }
 

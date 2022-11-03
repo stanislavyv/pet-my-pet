@@ -1,4 +1,5 @@
 const routes = require('express').Router();
+
 const {
     getAll,
     getById,
@@ -9,6 +10,8 @@ const {
 } = require('../services/petService');
 
 const authenticate = require('../middlewares/authenticate');
+const isUserCreator = require('../middlewares/isUserCreator');
+
 const {
     validatePet,
     validateDescription,
@@ -72,7 +75,7 @@ routes.post('/', authenticate(), validatePet, async (req, res) => {
 });
 
 // EDIT
-routes.patch('/:id/edit', authenticate(), validateDescription, (req, res) => {
+routes.patch('/:id/edit', authenticate(), isUserCreator(), validateDescription, (req, res) => {
     const id = req.params.id;
     const description = req.body;
 

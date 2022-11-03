@@ -93,7 +93,10 @@ const CreatePet = () => {
             imageURL: e.target.imageURL.value,
             category: e.target.category.value.toLowerCase(),
             likes: 0,
-            creator: username,
+            creator: {
+                username,
+                id: localStorage.getItem('uid'),
+            },
             peopleLiked: [],
         };
 

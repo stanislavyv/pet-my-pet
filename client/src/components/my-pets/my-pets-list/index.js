@@ -11,7 +11,8 @@ const MyPetsList = ({ username }) => {
     useEffect(() => {
         getAllPets().then((pets) => {
             const userPets = pets.filter(
-                (p) => p.creator?.toLowerCase() === username.toLowerCase()
+                (p) =>
+                    p.creator.username.toLowerCase() === username.toLowerCase()
             );
             setPets(userPets);
         });

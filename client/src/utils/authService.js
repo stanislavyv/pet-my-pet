@@ -13,6 +13,10 @@ export const onStateChange = (callback) => {
     onAuthStateChanged(auth, callback);
 };
 
+const setUserId = (id) => {
+    localStorage.setItem('uid', id);
+};
+
 export const createUser = async (email, password) => {
     try {
         const result = await createUserWithEmailAndPassword(
@@ -21,6 +25,7 @@ export const createUser = async (email, password) => {
             password
         );
 
+        setUserId(result.user.uid);
         return result;
     } catch (e) {
         console.log(e);
@@ -31,6 +36,7 @@ export const signIn = async (email, password) => {
     try {
         const result = await signInWithEmailAndPassword(auth, email, password);
 
+        setUserId(result.user.uid);
         return result;
     } catch (e) {
         console.log(e);
@@ -38,7 +44,7 @@ export const signIn = async (email, password) => {
 };
 
 export const logout = () => {
-    signOut(auth).catch(console.log);
+    signOut(auth).then(localStorage.removeItem('uid')).catch(console.log);
 };
 
 export const useFirebaseAuthState = () => {

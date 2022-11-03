@@ -22,8 +22,14 @@ const petSchema = new mongoose.Schema({
         requied: true,
     },
     creator: {
-        type: String,
-        required: true,
+        id: {
+            type: String,
+            required: true,
+        },
+        username: {
+            type: String,
+            required: true,
+        },
     },
     peopleLiked: [
         {
