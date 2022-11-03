@@ -20,22 +20,13 @@ const { validationResult } = require('express-validator');
 
 // GET ALL PETS
 routes.get('/', (req, res) => {
-    getAll().then((pets) => {
-        res.status(200).json(pets);
-    });
-});
-
-// GET BY CATEGORY
-routes.get('/categories/:category', (req, res) => {
-    const category = req.params.category;
-
-    try {
-        getByCategory(category).then((pets) => {
-            res.status(200).json(pets);
+    getAll(req.query)
+        .then((pets) => {
+            return res.status(200).json(pets);
+        })
+        .catch(() => {
+            return res.status(400).json({ message: 'Bad Request' });
         });
-    } catch (e) {
-        console.log(e);
-    }
 });
 
 // GET BY ID
@@ -75,19 +66,25 @@ routes.post('/', authenticate(), validatePet, async (req, res) => {
 });
 
 // EDIT
-routes.patch('/:id/edit', authenticate(), isUserCreator(), validateDescription, (req, res) => {
-    const id = req.params.id;
-    const description = req.body;
+routes.patch(
+    '/:id/edit',
+    authenticate(),
+    isUserCreator(),
+    validateDescription,
+    (req, res) => {
+        const id = req.params.id;
+        const description = req.body;
 
-    const errors = validationResult(req);
+        const errors = validationResult(req);
 
-    if (!errors.isEmpty()) {
-        return res.json({ message: errors.array()[0].msg });
+        if (!errors.isEmpty()) {
+            return res.json({ message: errors.array()[0].msg });
+        }
+
+        return editPet(id, description).then((result) => {
+            res.status(200).json(result);
+        });
     }
-
-    return editPet(id, description).then((result) => {
-        res.status(200).json(result);
-    });
-});
+);
 
 module.exports = routes;

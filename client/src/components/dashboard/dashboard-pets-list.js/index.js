@@ -15,7 +15,11 @@ const DashboardPetsList = ({ category }) => {
 
     // use notification.message so useEffect() doesn't get called twice on notification state change
     useEffect(() => {
-        getAllPets(category).then(setPets);
+        const searchObj = category
+            ? { type: 'category', data: category }
+            : null;
+
+        getAllPets(searchObj).then(setPets);
     }, [category, notification.message]);
 
     return (

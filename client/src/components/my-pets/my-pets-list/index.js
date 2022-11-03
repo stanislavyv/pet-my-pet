@@ -1,21 +1,22 @@
 import { useEffect, useState } from 'react';
+import { useAuth } from '../../../contexts/AuthContext';
 
 import { getAllPets } from '../../../utils/petService';
 
 import PetsList from '../../pets-list';
 import MyPetCard from '../../pet-card/my-pet-card';
 
-const MyPetsList = ({ email }) => {
+const MyPetsList = () => {
     const [pets, setPets] = useState([]);
+    const { userId } = useAuth();
 
     useEffect(() => {
-        getAllPets().then((pets) => {
-            const userPets = pets.filter(
-                (p) => p.creator.email.toLowerCase() === email.toLowerCase()
-            );
-            setPets(userPets);
+        const searchObj = { type: 'ownerId', data: userId };
+
+        getAllPets(searchObj).then((pets) => {
+            setPets(pets);
         });
-    }, [email]);
+    }, [userId]);
 
     return (
         <>

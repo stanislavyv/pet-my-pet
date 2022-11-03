@@ -1,11 +1,18 @@
 const Pet = require('../models/Pet');
 
-exports.getAll = () => {
-    return Pet.find();
-};
+exports.getAll = (inputQuery) => {
+    const { ownerid, category } = inputQuery;
+    let query = {};
 
-exports.getByCategory = (category = '') => {
-    return Pet.find({ category });
+    if (ownerid) {
+        query = { ...query, 'creator.id': ownerid };
+    }
+
+    if (category) {
+        query = { ...query, category };
+    }
+
+    return Pet.find(query);
 };
 
 exports.getById = (id) => {

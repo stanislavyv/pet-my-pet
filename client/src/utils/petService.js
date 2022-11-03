@@ -1,10 +1,11 @@
+import getSearchQuery from './misc/getSearchQuery';
 import * as requester from './requester';
 
-export const getAllPets = function (category) {
-    const queryString = category ? `/categories/${category}` : '';
+export const getAllPets = function (searchObj) {
+    let endpoint = getSearchQuery(searchObj);
 
     try {
-        return requester.get(queryString);
+        return requester.get(endpoint);
     } catch (e) {
         console.log(e.message);
     }

@@ -20,6 +20,7 @@ const AuthProvider = ({ children }) => {
             loading,
             isLoggedIn: Boolean(user),
             email: user?.email,
+            userId: user?.uid,
         }),
         [user, loading]
     );

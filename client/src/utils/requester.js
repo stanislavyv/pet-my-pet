@@ -2,7 +2,11 @@ import config from '../config';
 import { getAccessToken } from './authService';
 
 const makeRequest = async function (method, endpoint, body) {
-    const dataBaseUrl = `${config.SERVER_CONNECTION}/pets`;
+    let dataBaseUrl = `${config.SERVER_CONNECTION}/pets`;
+
+    if (!endpoint.startsWith('?')) {
+        dataBaseUrl += '/';
+    }
 
     const request = {
         method,
@@ -17,7 +21,7 @@ const makeRequest = async function (method, endpoint, body) {
         request.body = JSON.stringify(body);
     }
 
-    const res = await fetch(`${dataBaseUrl}/${endpoint}`, request);
+    const res = await fetch(`${dataBaseUrl}${endpoint}`, request);
     const data = res.json();
 
     return data;
