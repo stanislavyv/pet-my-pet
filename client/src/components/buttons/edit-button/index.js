@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import StyledLink from "../../shared/link";
+import styled from 'styled-components';
+import StyledLink from '../../shared/link';
 
 const StyledEdit = styled(StyledLink)`
     padding: 9px 16px;
@@ -9,7 +9,7 @@ const StyledEdit = styled(StyledLink)`
 `;
 
 const EditButton = ({ id }) => {
-    return <StyledEdit to={`/pets/edit/${id}`}>Edit</StyledEdit>;
-}
+    return <StyledEdit to={`/pets/${id}/edit`}>Edit</StyledEdit>;
+};
 
 export default EditButton;

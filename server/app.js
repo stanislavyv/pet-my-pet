@@ -16,5 +16,5 @@ const router = require('./router');
 app.use(router);
 
 app.listen(config.PORT, () => {
-    console.log(`Server is listening on port ${config.PORT}`);
+    console.log(`Server is listening on port ${config.PORT}...`);
 });
