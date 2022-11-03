@@ -30,7 +30,9 @@ export const createPet = function (petObject) {
 
 export const editPet = function (id, newDescription) {
     try {
-        const res = requester.patch(id, { description: newDescription });
+        const res = requester.patch(`/${id}/edit`, {
+            description: newDescription,
+        });
         return res;
     } catch (e) {
         console.log(`Couldn't edit pet - ${e.message}`);

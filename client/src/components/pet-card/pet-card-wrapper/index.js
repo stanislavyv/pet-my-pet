@@ -1,30 +1,31 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const StyledWrapper = styled.section.attrs(props => ({
-    size: props.otherDetails ? "420px" : "330px"
+const StyledWrapper = styled.section.attrs((props) => ({
+    size: props.otherDetails ? '420px' : '330px',
 }))`
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 20px 15px;
-    max-width: ${props => props.size};
+    max-width: ${(props) => props.size};
     width: 100%;
     max-height: 585px;
     box-shadow: 0px 0px 12px 0 #b3b3b3;
     border-radius: 8px;
 
     & .pet-name {
-        margin: 15px 10px 0 10px;
+        margin: 4px 10px 0 10px;
     }
 
-    & .pet-category, & .pet-owner {
+    & .pet-category,
+    & .pet-owner {
         margin: 9px 10px 0 10px;
     }
-    
+
     & .pet-counter {
         margin: 9px;
     }
-    
+
     & .pet-description {
         padding: 15px 10px;
         overflow: hidden;
@@ -41,12 +42,12 @@ const StyledWrapper = styled.section.attrs(props => ({
     }
 `;
 
-const PetCardWrapper = ({as, children, otherDetails}) => {
+const PetCardWrapper = ({ as, children, otherDetails }) => {
     return (
         <StyledWrapper as={as ?? ''} otherDetails={otherDetails}>
             {children}
         </StyledWrapper>
     );
-}
+};
 
 export default PetCardWrapper;

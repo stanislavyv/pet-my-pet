@@ -1,7 +1,7 @@
-import { useState, useEffect, useMemo } from "react";
-import { useAuth } from "../contexts/AuthContext";
+import { useState, useEffect, useMemo } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 
-import { hasUserLikedPet } from "../utils/petService";
+import { hasUserLikedPet } from '../utils/petService';
 
 const useLike = (petId, initialLikes) => {
     const [likes, setLikes] = useState(initialLikes);
@@ -11,10 +11,9 @@ const useLike = (petId, initialLikes) => {
 
     useEffect(() => {
         if (isLoggedIn) {
-            hasUserLikedPet(petId, username)
-                .then((res) => {
-                    setHasAlreadyLiked(res);
-                });
+            hasUserLikedPet(petId, username).then((res) => {
+                setHasAlreadyLiked(res);
+            });
         }
     }, [petId, username, isLoggedIn]);
 
@@ -23,13 +22,16 @@ const useLike = (petId, initialLikes) => {
         setHasAlreadyLiked(newHasAlreadyLiked);
     };
 
-    const value = useMemo(() => ({
-        likes,
-        hasAlreadyLiked,
-        toggleLike
-    }), [hasAlreadyLiked]);
+    const value = useMemo(
+        () => ({
+            likes,
+            hasAlreadyLiked,
+            toggleLike,
+        }),
+        [hasAlreadyLiked]
+    );
 
     return value;
-}
+};
 
 export default useLike;

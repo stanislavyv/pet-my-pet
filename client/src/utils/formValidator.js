@@ -6,7 +6,7 @@ const PASSWORD_PATTERN = /^[a-zA-Z0-9!@#$%^&*+\-_]{6,}$/;
 const IMAGE_URL_PATTERN = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/;
 
 export const isDescriptionValid = (value) => {
-    return value.length >= 10;
+    return value.length >= 10 && value.length <= 50;
 };
 
 export const isPetNameValid = (value) => {

@@ -4,11 +4,15 @@ const {
     getById,
     getByCategory,
     createPet,
+    editPet,
     doesPetExist,
 } = require('../services/petService');
 
 const authenticate = require('../middlewares/authenticate');
-const { validatePet } = require('../middlewares/validator');
+const {
+    validatePet,
+    validateDescription,
+} = require('../middlewares/validator');
 const { validationResult } = require('express-validator');
 
 // GET ALL PETS
@@ -68,5 +72,19 @@ routes.post('/', authenticate(), validatePet, async (req, res) => {
 });
 
 // EDIT
+routes.patch('/:id/edit', authenticate(), validateDescription, (req, res) => {
+    const id = req.params.id;
+    const description = req.body;
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.json({ message: errors.array()[0].msg });
+    }
+
+    return editPet(id, description).then((result) => {
+        res.status(200).json(result);
+    });
+});
 
 module.exports = routes;

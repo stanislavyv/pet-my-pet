@@ -28,7 +28,7 @@ function AppRoutes() {
                         element={<AuthRoute children={<CreatePet />} />}
                     />
                     <Route
-                        path="edit/:id"
+                        path=":id/edit"
                         element={<AuthRoute children={<EditPet />} />}
                     />
                 </Route>

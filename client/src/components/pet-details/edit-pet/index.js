@@ -5,12 +5,12 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useNotification } from '../../../contexts/NotificationContext';
 
 import { getPetById, editPet } from '../../../utils/petService';
-import * as formValidator from "../../../utils/formValidator";
+import * as formValidator from '../../../utils/formValidator';
 
-import InputError from '../../shared/input-error';
 import PetCardWrapper from '../../pet-card/pet-card-wrapper';
 import PetDetailsWrapper from '../pet-details-wrapper';
 import Button from '../../shared/button';
+import PetImage from '../../pet-card/pet-image';
 
 const StyledEditForm = styled.form`
     display: flex;
@@ -25,67 +25,51 @@ const StyledEditForm = styled.form`
 
 const EditPet = () => {
     const [pet, setPet] = useState({});
-    const [errorMessage, setErrorMessage] = useState('');
     const { id } = useParams();
     const navigate = useNavigate();
     const { notifyInfo, notifyError } = useNotification();
 
     useEffect(() => {
-        getPetById(id)
-            .then(setPet);
+        getPetById(id).then(setPet);
     }, [id]);
 
-    const onDescriptionBlurHandler = (e) => {
-        const descriptionValue = e.target.value;
-
-        if (!formValidator.isDescriptionValid(descriptionValue)) {
-            setErrorMessage('Description is too short!');
-        } else {
-            setErrorMessage('');
-        }
-    };
-
-    const onDescriptionSubmitHandler = (e) => {
+    const onDescriptionSubmitHandler = async (e) => {
         e.preventDefault();
-        if (errorMessage) { return; }
 
         const newDescription = e.target.description.value;
 
-        editPet(id, newDescription)
-            .then(() => {
-                navigate('/pets');
-                notifyInfo(`Successfully edited ${pet.name}!`);
-            });
+        const result = await editPet(id, newDescription);
+
+        if (result.message) {
+            notifyError(result.message);
+            return;
+        } else {
+            navigate('/pets');
+            notifyInfo(`Successfully edited ${pet.name}!`);
+        }
     };
 
     return (
         <PetDetailsWrapper>
             <PetCardWrapper>
                 <h3>{pet.name}</h3>
-                <p>Pet counter: <i className="fas fa-heart"></i> {pet.likes}</p>
-                <p className="img-wrapper">
-                    <img
-                        src={pet.imageURL}
-                        alt="Pet"
-                    />
+                <p>
+                    Pet counter: <i className="fas fa-heart"></i> {pet.likes}
                 </p>
+                <PetImage url={pet.imageURL} className="img-wrapper" />
                 <StyledEditForm onSubmit={onDescriptionSubmitHandler}>
                     <textarea
                         type="text"
                         name="description"
-                        rows='5'
-                        cols='30'
+                        rows="5"
+                        cols="30"
                         defaultValue={pet.description}
-                        onBlur={onDescriptionBlurHandler}
                     />
-                    <InputError message={errorMessage} />
-                    <Button type='submit'>
-                        Save
-                    </Button>
+                    <Button type="submit">Save</Button>
                 </StyledEditForm>
             </PetCardWrapper>
         </PetDetailsWrapper>
     );
-}
+};
 
 export default EditPet;

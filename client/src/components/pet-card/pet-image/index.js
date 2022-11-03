@@ -1,9 +1,13 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledImage = styled.div`
     width: 100%;
     height: 270px;
     overflow: hidden;
+
+    & {
+        margin-bottom: 11px;
+    }
 
     & img {
         display: block;
@@ -21,9 +25,9 @@ const StyledImage = styled.div`
 const PetImage = ({ url, className }) => {
     return (
         <StyledImage>
-            <img src={url} alt="pet" className={className}/>
+            <img src={url} alt="pet" className={className} />
         </StyledImage>
     );
-}
+};
 
 export default PetImage;

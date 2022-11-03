@@ -17,6 +17,10 @@ exports.createPet = (data) => {
     return pet.save();
 };
 
+exports.editPet = (id, data) => {
+    return Pet.findByIdAndUpdate(id, data);
+};
+
 exports.doesPetExist = async (name) => {
     return Boolean(await Pet.findOne({ name }));
 };
