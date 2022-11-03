@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { useAuth } from "../../../../contexts/AuthContext";
+import { useAuth } from '../../../../contexts/AuthContext';
 
-import NavbarSecondBarLogged from "./navbar-second-bar-logged";
-import NavbarSecondBarAnon from "./navbar-second-bar-anon";
+import NavbarSecondBarLogged from './navbar-second-bar-logged';
+import NavbarSecondBarAnon from './navbar-second-bar-anon';
 
 const StyledNavbarSecondBar = styled.div`
     display: flex;
@@ -11,18 +11,17 @@ const StyledNavbarSecondBar = styled.div`
 `;
 
 const NavbarSecondBar = () => {
-    const { isLoggedIn, username } = useAuth();
+    const { isLoggedIn, email } = useAuth();
 
     return (
         <StyledNavbarSecondBar>
-            {isLoggedIn
-                ?
-                <NavbarSecondBarLogged username={username} />
-                :
+            {isLoggedIn ? (
+                <NavbarSecondBarLogged email={email} />
+            ) : (
                 <NavbarSecondBarAnon />
-            }
+            )}
         </StyledNavbarSecondBar>
     );
-}
+};
 
 export default NavbarSecondBar;

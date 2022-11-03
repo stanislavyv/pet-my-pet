@@ -43,13 +43,13 @@ const updateLikesList = function (id, peopleLiked) {
     return requester.patch(id, { peopleLiked });
 };
 
-export const likePet = async function ({ likes, id }, username) {
+export const likePet = async function ({ likes, id }, email) {
     try {
         const res = await requester.patch(id, {
             likes: (Number(likes) + 1).toString(),
         });
         const peopleLiked = res.peopleLiked;
-        peopleLiked.push(username);
+        peopleLiked.push(email);
 
         updateLikesList(id, peopleLiked);
         return res.likes;
@@ -58,14 +58,14 @@ export const likePet = async function ({ likes, id }, username) {
     }
 };
 
-export const unpet = async function ({ likes, id }, username) {
+export const unpet = async function ({ likes, id }, email) {
     try {
         const res = await requester.patch(id, {
             likes: (Number(likes) - 1).toString(),
         });
         const peopleLiked = res.peopleLiked;
 
-        const userIndex = peopleLiked.indexOf(username);
+        const userIndex = peopleLiked.indexOf(email);
         peopleLiked.splice(userIndex, 1);
 
         updateLikesList(id, peopleLiked);
@@ -84,8 +84,8 @@ export const deletePet = (id) => {
     }
 };
 
-export const hasUserLikedPet = (id, username) => {
+export const hasUserLikedPet = (id, email) => {
     return getPetById(id).then((pet) => {
-        return pet.peopleLiked.includes(username);
+        return pet.peopleLiked.includes(email);
     });
 };

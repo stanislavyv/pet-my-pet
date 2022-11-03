@@ -7,17 +7,17 @@ const StyledNavbarSecondBarLogged = styled.div`
     }
 `;
 
-const NavbarSecondBarLogged = ({ username }) => {
+const NavbarSecondBarLogged = ({ email }) => {
     return (
         <StyledNavbarSecondBarLogged>
             <ul>
-                <li>Welcome, {username}!</li>
+                <li>Welcome, {email}!</li>
                 <li>
                     <LogoutButton />
                 </li>
             </ul>
         </StyledNavbarSecondBarLogged>
     );
-}
+};
 
 export default NavbarSecondBarLogged;

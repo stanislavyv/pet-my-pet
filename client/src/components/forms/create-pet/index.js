@@ -34,7 +34,7 @@ const CreatePet = () => {
         imageURL: '',
     });
     const [isValid, setIsValid] = useState(false);
-    const { username } = useAuth();
+    const { email } = useAuth();
     const { notifyInfo, notifyError } = useNotification();
     const navigate = useNavigate();
 
@@ -94,7 +94,7 @@ const CreatePet = () => {
             category: e.target.category.value.toLowerCase(),
             likes: 0,
             creator: {
-                username,
+                email,
                 id: localStorage.getItem('uid'),
             },
             peopleLiked: [],

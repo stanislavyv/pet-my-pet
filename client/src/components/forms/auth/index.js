@@ -15,7 +15,7 @@ const AuthForm = ({ type, onSubmitHandler, setIsValid }) => {
         password: '',
     });
 
-    const onUsernameBlurHandler = (e) => {
+    const onEmailBlurHandler = (e) => {
         if (type === 'Login') {
             return;
         }
@@ -67,8 +67,8 @@ const AuthForm = ({ type, onSubmitHandler, setIsValid }) => {
                     <input
                         type="text"
                         name="email"
-                        placeholder="Username"
-                        onBlur={onUsernameBlurHandler}
+                        placeholder="Email"
+                        onBlur={onEmailBlurHandler}
                     />
                     <i className="fas fa-user"></i>
                 </Field>

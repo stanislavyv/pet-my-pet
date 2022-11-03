@@ -23,7 +23,7 @@ const PetCard = React.memo(({ pet }) => {
                 <span className="bold-span">Category:</span> {pet.category}
             </p>
             <p className="pet-owner">
-                <span className="bold-span">Owner:</span> {pet.creator.username}
+                <span className="bold-span">Owner:</span> {pet.creator.email}
             </p>
             <p className="pet-description">{pet.description}</p>
         </StyledPetCard>

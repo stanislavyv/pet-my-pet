@@ -5,18 +5,17 @@ import { getAllPets } from '../../../utils/petService';
 import PetsList from '../../pets-list';
 import MyPetCard from '../../pet-card/my-pet-card';
 
-const MyPetsList = ({ username }) => {
+const MyPetsList = ({ email }) => {
     const [pets, setPets] = useState([]);
 
     useEffect(() => {
         getAllPets().then((pets) => {
             const userPets = pets.filter(
-                (p) =>
-                    p.creator.username.toLowerCase() === username.toLowerCase()
+                (p) => p.creator.email.toLowerCase() === email.toLowerCase()
             );
             setPets(userPets);
         });
-    }, [username]);
+    }, [email]);
 
     return (
         <>

@@ -10,7 +10,7 @@ import MyPetCard from '../../pet-card/my-pet-card';
 
 const DashboardPetsList = ({ category }) => {
     const [pets, setPets] = useState([]);
-    const { username, isLoggedIn } = useAuth();
+    const { email, isLoggedIn } = useAuth();
     const { notification } = useNotification();
 
     // use notification.message so useEffect() doesn't get called twice on notification state change
@@ -24,8 +24,8 @@ const DashboardPetsList = ({ category }) => {
                 <PetsList>
                     {pets.map((pet) => {
                         if (isLoggedIn) {
-                            return pet.creator.username.toLowerCase() ===
-                                username.toLowerCase() ? (
+                            return pet.creator.email.toLowerCase() ===
+                                email.toLowerCase() ? (
                                 <MyPetCard key={pet._id} {...pet} />
                             ) : (
                                 <OtherPetCard key={pet._id} {...pet} />

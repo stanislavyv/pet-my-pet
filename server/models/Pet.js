@@ -26,7 +26,7 @@ const petSchema = new mongoose.Schema({
             type: String,
             required: true,
         },
-        username: {
+        email: {
             type: String,
             required: true,
         },

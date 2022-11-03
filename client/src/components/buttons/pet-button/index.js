@@ -1,26 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { useAuth } from "../../../contexts/AuthContext";
+import React, { useState, useEffect } from 'react';
+import { useAuth } from '../../../contexts/AuthContext';
 
-import { getPetById, likePet } from "../../../utils/petService";
+import { getPetById, likePet } from '../../../utils/petService';
 
-import Button from "../../shared/button";
+import Button from '../../shared/button';
 
 const arePropsEqual = (prev, curr) => {
-    return prev.id === curr.id &&
-        prev.hasAlreadyLiked === curr.hasAlreadyLiked;
+    return prev.id === curr.id && prev.hasAlreadyLiked === curr.hasAlreadyLiked;
 };
 
 const PetButton = React.memo(({ id, parentCallback, hasAlreadyLiked }) => {
     const [pet, setPet] = useState({});
-    const { username } = useAuth()
+    const { email } = useAuth();
 
     useEffect(() => {
-        getPetById(id)
-            .then(setPet);
-    }, [id])
+        getPetById(id).then(setPet);
+    }, [id]);
 
     const onPetClickHandler = async () => {
-        const likes = await likePet(pet, username);
+        const likes = await likePet(pet, email);
         parentCallback(likes, !hasAlreadyLiked);
     };
 

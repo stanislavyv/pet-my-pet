@@ -7,15 +7,15 @@ const useLike = (petId, initialLikes) => {
     const [likes, setLikes] = useState(initialLikes);
     const [hasAlreadyLiked, setHasAlreadyLiked] = useState(false);
 
-    const { username, isLoggedIn } = useAuth();
+    const { email, isLoggedIn } = useAuth();
 
     useEffect(() => {
         if (isLoggedIn) {
-            hasUserLikedPet(petId, username).then((res) => {
+            hasUserLikedPet(petId, email).then((res) => {
                 setHasAlreadyLiked(res);
             });
         }
-    }, [petId, username, isLoggedIn]);
+    }, [petId, email, isLoggedIn]);
 
     const toggleLike = (newLikes, newHasAlreadyLiked) => {
         setLikes(newLikes);
