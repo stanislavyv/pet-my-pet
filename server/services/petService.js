@@ -44,6 +44,11 @@ exports.editPet = (id, data) => {
     return Pet.findByIdAndUpdate(id, data);
 };
 
+exports.deletePet = async (id) => {
+    const pet = await Pet.findByIdAndDelete(id);
+    return pet;
+};
+
 exports.doesPetExist = async (name) => {
     return Boolean(await Pet.findOne({ name }));
 };

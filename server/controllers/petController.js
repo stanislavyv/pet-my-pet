@@ -7,6 +7,7 @@ const {
     editPet,
     doesPetExist,
     likeUnlikePet,
+    deletePet,
 } = require('../services/petService');
 
 const authenticate = require('../middlewares/authenticate');
@@ -94,6 +95,17 @@ routes.patch('/:id/like', authenticate(), (req, res) => {
     likeUnlikePet(req.uid, id).then((pet) => {
         res.status(200).json(pet);
     });
+});
+
+// DELETE
+routes.delete('/:id', authenticate(), isUserCreator(), (req, res) => {
+    const id = req.params.id;
+
+    try {
+        return deletePet(id);
+    } catch (e) {
+        res.status(500).json({ message: 'Unable to delete pet.' });
+    }
 });
 
 module.exports = routes;
