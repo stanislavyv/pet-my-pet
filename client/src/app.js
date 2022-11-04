@@ -14,11 +14,6 @@ import Notification from './components/notification';
 
 import AppRoutes from './routes';
 
-//TODO:
-// THINK OF A WAY TO USE AUTH CONTEXT IN APP COMP
-// SEE useSignInWithEmailAndPassword FOR ERROR HANDLING ON
-//     ATTEMPTED LOGIN WITH INVALID CREDENTIALNS
-// See how to make auth guard without HOC
 function App() {
     return (
         <>
