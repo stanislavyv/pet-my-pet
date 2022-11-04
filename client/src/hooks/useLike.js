@@ -1,25 +1,26 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 
-import { hasUserLikedPet } from '../utils/petService';
+import { getPetById, likePet } from '../utils/petService';
 
-const useLike = (petId, initialLikes) => {
-    const [likes, setLikes] = useState(initialLikes);
+const useLike = (petId) => {
+    const [likes, setLikes] = useState(0);
     const [hasAlreadyLiked, setHasAlreadyLiked] = useState(false);
 
-    const { email, isLoggedIn } = useAuth();
+    const { email, userId } = useAuth();
 
     useEffect(() => {
-        if (isLoggedIn) {
-            hasUserLikedPet(petId, email).then((res) => {
-                setHasAlreadyLiked(res);
-            });
-        }
-    }, [petId, email, isLoggedIn]);
+        getPetById(petId).then((pet) => {
+            setLikes(pet.likes);
+            setHasAlreadyLiked(pet?.peopleLiked.includes(userId));
+        });
+    }, [petId, userId, email]);
 
-    const toggleLike = (newLikes, newHasAlreadyLiked) => {
-        setLikes(newLikes);
-        setHasAlreadyLiked(newHasAlreadyLiked);
+    const toggleLike = () => {
+        likePet(petId).then((pet) => {
+            setLikes(pet.likes);
+            setHasAlreadyLiked(pet.peopleLiked.includes(userId));
+        });
     };
 
     const value = useMemo(
@@ -28,7 +29,7 @@ const useLike = (petId, initialLikes) => {
             hasAlreadyLiked,
             toggleLike,
         }),
-        [hasAlreadyLiked]
+        [hasAlreadyLiked, likes]
     );
 
     return value;

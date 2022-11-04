@@ -3,10 +3,10 @@ const routes = require('express').Router();
 const {
     getAll,
     getById,
-    getByCategory,
     createPet,
     editPet,
     doesPetExist,
+    likeUnlikePet,
 } = require('../services/petService');
 
 const authenticate = require('../middlewares/authenticate');
@@ -86,5 +86,14 @@ routes.patch(
         });
     }
 );
+
+// LIKE
+routes.patch('/:id/like', authenticate(), (req, res) => {
+    const id = req.params.id;
+
+    likeUnlikePet(req.uid, id).then((pet) => {
+        res.status(200).json(pet);
+    });
+});
 
 module.exports = routes;

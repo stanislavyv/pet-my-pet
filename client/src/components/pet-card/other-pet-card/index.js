@@ -12,7 +12,7 @@ import arePetsEqual from '../../../utils/misc/arePetsEqual';
 import PetInfo from '../pet-info';
 
 const OtherPetCard = React.memo((pet) => {
-    const { likes, hasAlreadyLiked, toggleLike } = useLike(pet._id, pet.likes);
+    const { likes, hasAlreadyLiked, toggleLike } = useLike(pet._id);
 
     return (
         <PetCardWrapper as="li">
@@ -21,8 +21,8 @@ const OtherPetCard = React.memo((pet) => {
                 <>
                     <OtherPetLoggedButton
                         id={pet._id}
+                        parentCallback={toggleLike}
                         hasAlreadyLiked={hasAlreadyLiked}
-                        toggleLike={toggleLike}
                     />
                     <DetailsButton id={pet._id} />
                     <i className="fas fa-heart"></i> <span>{likes}</span>

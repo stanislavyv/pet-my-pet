@@ -40,39 +40,11 @@ export const editPet = function (id, newDescription) {
     }
 };
 
-const updateLikesList = function (id, peopleLiked) {
-    return requester.patch(id, { peopleLiked });
-};
-
-export const likePet = async function ({ likes, id }, email) {
+export const likePet = async function (id) {
     try {
-        const res = await requester.patch(id, {
-            likes: (Number(likes) + 1).toString(),
-        });
-        const peopleLiked = res.peopleLiked;
-        peopleLiked.push(email);
-
-        updateLikesList(id, peopleLiked);
-        return res.likes;
+        return requester.patch(`${id}/like`);
     } catch (e) {
         console.log(`Couldn't like pet - ${e.message}`);
-    }
-};
-
-export const unpet = async function ({ likes, id }, email) {
-    try {
-        const res = await requester.patch(id, {
-            likes: (Number(likes) - 1).toString(),
-        });
-        const peopleLiked = res.peopleLiked;
-
-        const userIndex = peopleLiked.indexOf(email);
-        peopleLiked.splice(userIndex, 1);
-
-        updateLikesList(id, peopleLiked);
-        return res.likes;
-    } catch (e) {
-        console.log(`Error: ${e.message}`);
     }
 };
 
@@ -83,10 +55,4 @@ export const deletePet = (id) => {
     } catch (e) {
         console.log(e);
     }
-};
-
-export const hasUserLikedPet = (id, email) => {
-    return getPetById(id).then((pet) => {
-        return pet.peopleLiked.includes(email);
-    });
 };

@@ -1,32 +1,23 @@
-import { useAuth } from "../../../contexts/AuthContext";
+import { useAuth } from '../../../contexts/AuthContext';
 
-import PetButton from "../../buttons/pet-button";
-import UnpetButton from "../../buttons/unpet-button";
+import PetButton from '../../buttons/pet-button';
 
-const OtherPetLoggedButton = ({ hasAlreadyLiked, id, toggleLike }) => {
+const OtherPetLoggedButton = ({ id, parentCallback, hasAlreadyLiked }) => {
     const { isLoggedIn } = useAuth();
 
     return (
         <>
             {isLoggedIn && (
                 <>
-                    {hasAlreadyLiked ? (
-                        <UnpetButton
-                            id={id}
-                            hasAlreadyLiked={hasAlreadyLiked}
-                            parentCallback={toggleLike}
-                        />
-                    ) : (
-                        <PetButton
-                            id={id}
-                            hasAlreadyLiked={hasAlreadyLiked}
-                            parentCallback={toggleLike}
-                        />
-                    )}
+                    <PetButton
+                        petId={id}
+                        parentCallback={parentCallback}
+                        hasAlreadyLiked={hasAlreadyLiked}
+                    />
                 </>
             )}
         </>
     );
-}
+};
 
 export default OtherPetLoggedButton;
