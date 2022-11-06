@@ -1,29 +1,22 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { Styled } from '../link';
 
-const StyledButton = styled.button`
-    display: block;
-    padding: 10px 16px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    background: cadetblue;
-    color: rgb(255, 255, 255);
-    border: none;
-    font-size: 16px;
-
-    &:hover {
-        background: rgb(248, 215, 107);
-        color: rgb(0, 0, 0);
-        font-weight: bold;
-    }
+export const StyledButton = styled(Styled)`
+    padding: ${(props) => (props.link ? '6px 13px' : '10px 16px')};
+    font-size: 1rem;
 `;
 
-const Button = ({ children, onClickHandler, type }) => {
+const Button = ({ children, onClickHandler, type, link }) => {
     return (
-        <StyledButton onClick={onClickHandler} type={type}>
+        <StyledButton
+            as="button"
+            onClick={onClickHandler}
+            type={type}
+            link={link}
+        >
             {children}
         </StyledButton>
     );
-}
+};
 
 export default Button;

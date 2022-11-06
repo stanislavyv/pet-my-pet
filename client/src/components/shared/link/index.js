@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-const Styled = styled(Link)`
+export const Styled = styled(Link)`
     display: block;
     padding: 6px 13px;
     border-radius: 6px;
@@ -18,8 +18,12 @@ const Styled = styled(Link)`
     }
 `;
 
-const StyledLink = ({ to, children, className, keyProp }) => {
-    return <Styled to={to} className={className}>{children}</Styled>;
+const StyledLink = ({ to = '', children, className }) => {
+    return (
+        <Styled to={to} className={className}>
+            {children}
+        </Styled>
+    );
 };
 
 export default StyledLink;

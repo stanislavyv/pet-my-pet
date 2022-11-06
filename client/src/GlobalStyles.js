@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
     body {
@@ -43,6 +43,12 @@ const GlobalStyles = createGlobalStyle`
     textarea {
         resize: none;
         outline: none;
+    }
+
+    button {
+        text-decoration: none;
+        border: none;
+        font-weight: bold;
     }
 `;
 

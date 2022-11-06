@@ -39,10 +39,10 @@ const PagesList = ({ totalCount, currentPage, dispatchCallback }) => {
             {/* Left navigation arrow */}
             <PageArrow left disabled={currentPage === 1} onClick={onPrevious} />
 
-            {paginationRange.map((pageNumber) => {
+            {paginationRange.map((pageNumber, key) => {
                 // If the pageItem is a DOT, render the DOTS unicode character
                 if (pageNumber === DOTS) {
-                    return <PageDots />;
+                    return <PageDots key={key} />;
                 }
 
                 // Render our Page Pills
@@ -55,6 +55,7 @@ const PagesList = ({ totalCount, currentPage, dispatchCallback }) => {
                                 payload: pageNumber,
                             })
                         }
+                        key={key}
                     >
                         {pageNumber}
                     </PageItem>
@@ -66,7 +67,7 @@ const PagesList = ({ totalCount, currentPage, dispatchCallback }) => {
                 right
                 disabled={currentPage === lastPage}
                 onClick={onNext}
-            />
+                />
         </StyledPagesList>
     );
 };

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../../../contexts/AuthContext';
 import { useNotification } from '../../../contexts/NotificationContext';
 import usePageData from '../../../hooks/usePageData';
+import { useSearchParams } from 'react-router-dom';
 
 import { getAllPets } from '../../../utils/petService';
 
@@ -15,6 +16,7 @@ const DashboardPetsList = ({ category }) => {
     const { email, isLoggedIn } = useAuth();
     const { notification } = useNotification();
     const [{ currentPage, totalItemsCount }, dispatchPageData] = usePageData();
+    const [searchParams, setSearchParams] = useSearchParams();
 
     // use notification.message so useEffect() doesn't get called twice on notification state change
     useEffect(() => {
