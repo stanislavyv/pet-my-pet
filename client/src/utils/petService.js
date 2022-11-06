@@ -1,11 +1,10 @@
-import getSearchQuery from './misc/getSearchQuery';
 import * as requester from './requester';
 
-export const getAllPets = function (searchObj) {
-    let endpoint = getSearchQuery(searchObj);
+export const getAllPets = function () {
+    const query = window.location.search;
 
     try {
-        return requester.get(endpoint);
+        return requester.get(query);
     } catch (e) {
         console.log(e.message);
     }
