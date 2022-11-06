@@ -25,7 +25,7 @@ routes.get('/', (req, res) => {
         .then((pets) => {
             return res.status(200).json(pets);
         })
-        .catch(() => {
+        .catch((e) => {
             return res.status(400).json({ message: 'Bad Request' });
         });
 });

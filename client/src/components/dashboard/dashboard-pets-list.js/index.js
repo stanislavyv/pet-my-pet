@@ -11,20 +11,20 @@ import OtherPetCard from '../../pet-card/other-pet-card';
 import MyPetCard from '../../pet-card/my-pet-card';
 import PagesList from '../../pages-list';
 
-const DashboardPetsList = ({ category }) => {
+const DashboardPetsList = () => {
     const [pets, setPets] = useState([]);
     const { email, isLoggedIn } = useAuth();
     const { notification } = useNotification();
     const [{ currentPage, totalItemsCount }, dispatchPageData] = usePageData();
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
 
     // use notification.message so useEffect() doesn't get called twice on notification state change
     useEffect(() => {
-        getAllPets().then((pets) => {
-            setPets(pets);
-            dispatchPageData({ type: 'setCount', payload: pets.length });
+        getAllPets().then(({ count, result }) => {
+            setPets(result);
+            dispatchPageData({ type: 'setCount', payload: count });
         });
-    }, [category, notification.message, currentPage, searchParams]);
+    }, [notification.message, searchParams]);
 
     return (
         <>

@@ -1,4 +1,5 @@
-import { useReducer } from 'react';
+import { useReducer, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 const reducer = (state, { type, payload }) => {
     switch (type) {
@@ -20,6 +21,14 @@ const usePageData = () => {
         currentPage: 1,
         totalItemsCount: 1,
     });
+    const [, setSearchParams] = useSearchParams();
+
+    useEffect(() => {
+        setSearchParams((state) => {
+            state.set('page', pageData.currentPage);
+            return state;
+        });
+    }, [pageData.currentPage]);
 
     return [pageData, dispatchPageData];
 };

@@ -1,7 +1,9 @@
 const Pet = require('../models/Pet');
 
-exports.getAll = (inputQuery) => {
-    const { ownerid, category } = inputQuery;
+const PAGE_SIZE = 8;
+
+exports.getAll = async (inputQuery) => {
+    const { ownerid, category, page } = inputQuery;
     let query = {};
 
     if (ownerid) {
@@ -12,7 +14,12 @@ exports.getAll = (inputQuery) => {
         query = { ...query, category };
     }
 
-    return Pet.find(query);
+    const offset = page ? (page - 1) * PAGE_SIZE : 0;
+
+    const count = await Pet.countDocuments(query);
+    const result = await Pet.find(query).skip(offset).limit(PAGE_SIZE).lean();
+
+    return { count, result };
 };
 
 exports.getById = (id) => {

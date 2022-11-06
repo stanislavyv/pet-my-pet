@@ -32,6 +32,10 @@ const PagesList = ({ totalCount, currentPage, dispatchCallback }) => {
         dispatchCallback({ type: 'decrement' });
     };
 
+    const onPageClick = (pageNumber) => {
+        dispatchCallback({ type: 'setPage', payload: pageNumber });
+    };
+
     let lastPage = paginationRange[paginationRange.length - 1];
 
     return (
@@ -49,12 +53,7 @@ const PagesList = ({ totalCount, currentPage, dispatchCallback }) => {
                 return (
                     <PageItem
                         selected={pageNumber === currentPage}
-                        onClick={() =>
-                            dispatchCallback({
-                                type: 'setPage',
-                                payload: pageNumber,
-                            })
-                        }
+                        onClick={() => onPageClick(pageNumber)}
                         key={key}
                     >
                         {pageNumber}
@@ -67,7 +66,7 @@ const PagesList = ({ totalCount, currentPage, dispatchCallback }) => {
                 right
                 disabled={currentPage === lastPage}
                 onClick={onNext}
-                />
+            />
         </StyledPagesList>
     );
 };
