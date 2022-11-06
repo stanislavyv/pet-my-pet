@@ -1,9 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { useAuth } from "../../../../contexts/AuthContext";
+import { useAuth } from '../../../../contexts/AuthContext';
 
-import { Link } from "react-router-dom";
-import StyledLink from "../../../shared/link";
+import { Link, useNavigate } from 'react-router-dom';
+import StyledLink from '../../../shared/link';
+import Button from '../../../shared/button';
 
 const StyledNavbarFirstBar = styled.div`
     display: flex;
@@ -15,19 +16,28 @@ const StyledNavbarFirstBar = styled.div`
 `;
 
 const NavbarFirstBar = () => {
-    const { isLoggedIn } = useAuth();
-    
+    const { isLoggedIn, userId } = useAuth();
+    const navigate = useNavigate();
+
+    function onClickHandler() {
+        const search = `?ownerid=${encodeURIComponent(userId)}`;
+
+        navigate({ pathname: '/pets', search });
+    }
+
     return (
         <StyledNavbarFirstBar>
             <Link to="/pets">Dashboard</Link>
-            {isLoggedIn &&
+            {isLoggedIn && (
                 <>
-                    <StyledLink to="/my-pets">My Pets</  StyledLink>
-                    <StyledLink to="/pets/create">Add Pet</   StyledLink>
+                    <Button link onClickHandler={onClickHandler}>
+                        My Pets
+                    </Button>
+                    <StyledLink to="/pets/create">Add Pet</StyledLink>
                 </>
-            }
+            )}
         </StyledNavbarFirstBar>
     );
-}
+};
 
 export default NavbarFirstBar;

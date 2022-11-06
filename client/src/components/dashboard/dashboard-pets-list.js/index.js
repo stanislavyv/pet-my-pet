@@ -28,6 +28,7 @@ const DashboardPetsList = () => {
 
     return (
         <>
+            {searchParams.get('ownerid') ? <h1>{email}'s pets</h1> : ''}
             {pets.length > 0 ? (
                 <>
                     <PetsList>

@@ -7,7 +7,7 @@ exports.getAll = async (inputQuery) => {
     let query = {};
 
     if (ownerid) {
-        query = { ...query, 'creator.id': ownerid };
+        query = { ...query, 'creator.id': decodeURIComponent(ownerid) };
     }
 
     if (category) {

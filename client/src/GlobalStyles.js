@@ -50,6 +50,11 @@ const GlobalStyles = createGlobalStyle`
         border: none;
         font-weight: bold;
     }
+
+    a {
+        display: inline-block;
+        margin: 10px;
+    }
 `;
 
 export default GlobalStyles;
