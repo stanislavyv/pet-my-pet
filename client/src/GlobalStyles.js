@@ -55,6 +55,10 @@ const GlobalStyles = createGlobalStyle`
         display: inline-block;
         margin: 10px;
     }
+
+    button:hover {
+        cursor: pointer;
+    }
 `;
 
 export default GlobalStyles;

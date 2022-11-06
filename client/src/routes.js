@@ -6,7 +6,6 @@ import CreatePet from './components/forms/create-pet';
 import EditPet from './components/pet-details/edit-pet';
 import RegisterForm from './components/forms/auth/register';
 import LoginForm from './components/forms/auth/login';
-import MyPets from './components/my-pets';
 import OtherPetDetails from './components/pet-details/other-pet-details';
 
 import AuthRoute from './hoc/AuthRoute';
@@ -39,10 +38,6 @@ function AppRoutes() {
                 <Route
                     path="/login"
                     element={<AuthFormRoute children={<LoginForm />} />}
-                />
-                <Route
-                    path="/my-pets"
-                    element={<AuthRoute children={<MyPets />} />}
                 />
 
                 <Route path="*" element={<Navigate to="/pets" />} />

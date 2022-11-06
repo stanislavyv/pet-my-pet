@@ -1,22 +1,7 @@
-import { useNotification } from '../../../contexts/NotificationContext';
+import Button from '../../shared/button';
 
-import { deletePet } from "../../../utils/petService";
-
-import Button from "../../shared/button";
-
-const DeleteButton = ({ id }) => {
-    const { notifyInfo, notifyError } = useNotification();
-
-    const deleteCallback = () => {
-        try {
-            deletePet(id);
-            notifyInfo('Successfuly removed pet!');
-        } catch (e) {
-            notifyError(`Couldn't remove pet: ${e.message}`);
-        }
-    };
-
-    return <Button onClickHandler={deleteCallback}>Delete</Button>;
-}
+const DeleteButton = ({ onClick }) => {
+    return <Button onClickHandler={onClick}>Delete</Button>;
+};
 
 export default DeleteButton;
