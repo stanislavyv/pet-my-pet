@@ -16,6 +16,11 @@ export const Styled = styled(Link)`
         color: rgb(0, 0, 0);
         font-weight: bold;
     }
+
+    &:active {
+        background-color: rgb(246, 203, 60);
+        transform: scale(0.97);
+    }
 `;
 
 const StyledLink = ({ to = '', children, className }) => {

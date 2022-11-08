@@ -21,6 +21,12 @@ const StyledWrapper = styled.div`
     button:nth-child(2) {
         border-bottom-right-radius: 7px;
     }
+
+    button:hover {
+        background: rgb(248, 215, 107);
+        color: rgb(0, 0, 0);
+        font-weight: bold;
+    }
 `;
 
 const ButtonWrapper = ({ id, setPopUp }) => {
