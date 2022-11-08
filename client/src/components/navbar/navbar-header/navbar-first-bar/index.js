@@ -16,9 +16,9 @@ const NavbarFirstBar = () => {
     return (
         <StyledNavbarFirstBar>
             <NavbarLink to="/pets">Dashboard</NavbarLink>
-            <MyPetsButton />
             {isLoggedIn && (
                 <>
+                    <MyPetsButton />
                     <NavbarLink to="/pets/create">Add Pet</NavbarLink>
                 </>
             )}

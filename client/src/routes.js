@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import PetLayout from './components/layouts/pet-layout';
 import Dashboard from './components/dashboard';
@@ -16,6 +16,7 @@ function AppRoutes() {
     return (
         <>
             <Routes>
+                <Route path="/" element={<Navigate to="/pets" />} />
                 <Route path="/pets/*" element={<PetLayout />}>
                     <Route index element={<Dashboard />} />
                     <Route

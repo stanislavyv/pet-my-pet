@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import StyledLink from "../../../../shared/link";
+import NavbarLink, { StyledNavbarLink } from '../../navbar-link';
 
 const StyledSecondBarAnon = styled.section`
     & li {
@@ -13,20 +13,18 @@ const NavbarSecondBarAnon = () => {
         <StyledSecondBarAnon>
             <ul>
                 <li>
-                    <StyledLink to="/register">
-                        <i className="fas fa-user-plus"></i>
-                        Register
-                    </StyledLink>
+                    <NavbarLink to="/register">
+                        <i className="fas fa-user-plus"></i> Register
+                    </NavbarLink>
                 </li>
                 <li>
-                    <StyledLink to="/login">
-                        <i className="fas fa-sign-in-alt"></i>
-                        Login
-                    </StyledLink>
+                    <NavbarLink to="/login">
+                        <i className="fas fa-sign-in-alt"></i> Login
+                    </NavbarLink>
                 </li>
             </ul>
         </StyledSecondBarAnon>
     );
-}
+};
 
 export default NavbarSecondBarAnon;
