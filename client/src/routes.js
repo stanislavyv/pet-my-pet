@@ -1,4 +1,4 @@
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import PetLayout from './components/layouts/pet-layout';
 import Dashboard from './components/dashboard';
@@ -7,6 +7,7 @@ import EditPet from './components/pet-details/edit-pet';
 import RegisterForm from './components/forms/auth/register';
 import LoginForm from './components/forms/auth/login';
 import OtherPetDetails from './components/pet-details/other-pet-details';
+import NotFound from './components/not-found';
 
 import AuthRoute from './hoc/AuthRoute';
 import AuthFormRoute from './hoc/AuthFormRoute';
@@ -40,7 +41,7 @@ function AppRoutes() {
                     element={<AuthFormRoute children={<LoginForm />} />}
                 />
 
-                <Route path="*" element={<Navigate to="/pets" />} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </>
     );

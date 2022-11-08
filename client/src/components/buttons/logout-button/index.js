@@ -13,7 +13,7 @@ const LogoutButton = () => {
     };
 
     return (
-        <NavbarButton onClickHandler={onLogoutClickHandler}>
+        <NavbarButton onClick={onLogoutClickHandler}>
             <i className="fas fa-sign-out-alt"></i> Logout
         </NavbarButton>
     );

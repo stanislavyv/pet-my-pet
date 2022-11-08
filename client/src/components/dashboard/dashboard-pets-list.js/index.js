@@ -10,6 +10,7 @@ import PetsList from '../../pets-list';
 import OtherPetCard from '../../pet-card/other-pet-card';
 import MyPetCard from '../../pet-card/my-pet-card';
 import PagesList from '../../pages-list';
+import BlankPage from '../../shared/blank-page';
 
 const DashboardPetsList = () => {
     const [pets, setPets] = useState([]);
@@ -52,7 +53,13 @@ const DashboardPetsList = () => {
                     />
                 </>
             ) : (
-                <h1>Nothing to see here...</h1>
+                <>
+                    {searchParams.has('ownerid') ? (
+                        <BlankPage>You haven't added any pets yet...</BlankPage>
+                    ) : (
+                        <BlankPage>Nothing to see here...</BlankPage>
+                    )}
+                </>
             )}
         </>
     );

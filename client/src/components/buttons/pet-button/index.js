@@ -6,7 +6,7 @@ const PetButton = ({ parentCallback, hasAlreadyLiked }) => {
     };
 
     return (
-        <Button onClickHandler={onPetClickHandler}>
+        <Button onClick={onPetClickHandler}>
             <i className="fas fa-heart"></i> {hasAlreadyLiked ? 'Unpet' : 'Pet'}
         </Button>
     );

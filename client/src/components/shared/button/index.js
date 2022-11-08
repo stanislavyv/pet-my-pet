@@ -16,14 +16,9 @@ export const StyledButton = styled(Styled)`
     }
 `;
 
-const Button = ({ children, onClickHandler, type, link }) => {
+const Button = ({ children, onClick, type, link }) => {
     return (
-        <StyledButton
-            as="button"
-            onClick={onClickHandler}
-            type={type}
-            link={link}
-        >
+        <StyledButton as="button" onClick={onClick} type={type} link={link}>
             {children}
         </StyledButton>
     );
