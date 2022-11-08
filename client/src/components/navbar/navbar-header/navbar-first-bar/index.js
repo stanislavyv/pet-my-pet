@@ -2,38 +2,24 @@ import styled from 'styled-components';
 
 import { useAuth } from '../../../../contexts/AuthContext';
 
-import { Link, useNavigate } from 'react-router-dom';
-import StyledLink from '../../../shared/link';
-import Button from '../../../shared/button';
+import NavbarLink from '../navbar-link';
+import MyPetsButton from '../../../buttons/my-pets-button';
 
 const StyledNavbarFirstBar = styled.div`
     display: flex;
     align-items: center;
-
-    & a {
-        margin: 4px;
-    }
 `;
 
 const NavbarFirstBar = () => {
-    const { isLoggedIn, userId } = useAuth();
-    const navigate = useNavigate();
-
-    function onClickHandler() {
-        const search = `?ownerid=${encodeURIComponent(userId)}`;
-
-        navigate({ pathname: '/pets', search });
-    }
+    const { isLoggedIn } = useAuth();
 
     return (
         <StyledNavbarFirstBar>
-            <Link to="/pets">Dashboard</Link>
+            <NavbarLink to="/pets">Dashboard</NavbarLink>
+            <MyPetsButton />
             {isLoggedIn && (
                 <>
-                    <Button link onClickHandler={onClickHandler}>
-                        My Pets
-                    </Button>
-                    <StyledLink to="/pets/create">Add Pet</StyledLink>
+                    <NavbarLink to="/pets/create">Add Pet</NavbarLink>
                 </>
             )}
         </StyledNavbarFirstBar>

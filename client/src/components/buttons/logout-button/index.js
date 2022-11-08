@@ -1,22 +1,22 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-import { logout } from "../../../utils/authService";
+import { logout } from '../../../utils/authService';
 
-import Button from "../../shared/button";
+import NavbarButton from '../../navbar/navbar-header/navbar-link/navbar-btn';
 
 const LogoutButton = () => {
     const navigate = useNavigate();
-    
+
     const onLogoutClickHandler = () => {
         logout();
         navigate('/pets');
-    }
-    
+    };
+
     return (
-        <Button onClickHandler={onLogoutClickHandler}>
+        <NavbarButton onClickHandler={onLogoutClickHandler}>
             <i className="fas fa-sign-out-alt"></i> Logout
-        </Button>
+        </NavbarButton>
     );
-}
+};
 
 export default LogoutButton;

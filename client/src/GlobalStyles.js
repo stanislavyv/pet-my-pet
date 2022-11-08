@@ -47,6 +47,10 @@ const GlobalStyles = createGlobalStyle`
 
     button {
         text-decoration: none;
+        font-size: 1rem;
+        font-weight: bold;
+        background-color: transparent;
+        color: white;
         border: none;
         font-weight: bold;
     }
