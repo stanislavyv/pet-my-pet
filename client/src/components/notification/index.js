@@ -1,29 +1,37 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { useNotification } from "../../contexts/NotificationContext";
+import { useNotification } from '../../contexts/NotificationContext';
 
-import InfoNotification from "./info-notification";
-import ErrorNotification from "./error-notification";
+import InfoNotification from './info-notification';
+import ErrorNotification from './error-notification';
 
 const StyledNotifications = styled.div`
     position: fixed;
-    top: 50px;
-    right: 0;
+    bottom: 0;
+    left: 9%;
+    width: 80vw;
+    margin: 0 auto;
 
     & div {
-        padding: 14px 32px;
-        border-radius: 10px;
-        font-size: 24px;
+        border-radius: 9px;
+        box-shadow: 0 5px 10px #cccccc;
+        margin-top: 2%;
+        margin-bottom: 2%;
+        color: white;
+        font-weight: 500;
+        font-style: oblique;
+        font-size: 1.3rem;
+        text-decoration: underline;
+        padding: 1%;
+        text-align: center;
     }
 
     & .notification-info {
-        background: rgb(255 245 1 / 83%);
-        color: #ff3c00;
+        background-color: rgba(1, 131, 29, 0.85);
     }
 
     & .notification-danger {
-        background: #ff1300e3;
-        color: rgb(255 242 1)
+        background-color: rgba(238, 74, 74, 0.85);
     }
 `;
 
@@ -33,7 +41,7 @@ const Notification = () => {
     return (
         <StyledNotifications>
             {notification.isActive &&
-                (notification.type === "info" ? (
+                (notification.type === 'info' ? (
                     <InfoNotification message={notification.message} />
                 ) : (
                     <ErrorNotification message={notification.message} />
