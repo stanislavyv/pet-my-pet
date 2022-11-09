@@ -36,9 +36,7 @@ const Categories = () => {
                         <li key={index}>
                             <Button
                                 link
-                                onClickHandler={() =>
-                                    onCategoryClick(link.search)
-                                }
+                                onClick={() => onCategoryClick(link.search)}
                             >
                                 {link.name}
                             </Button>
