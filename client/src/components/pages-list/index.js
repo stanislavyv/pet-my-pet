@@ -10,7 +10,7 @@ import PageDots from './page-item/page-dots';
 const StyledPagesList = styled.ul`
     display: flex;
     justify-content: center;
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
 `;
 
 const PagesList = ({ totalCount, currentPage, dispatchCallback }) => {

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Styled } from '../link';
 
 export const StyledButton = styled(Styled)`
-    padding: ${(props) => (props.link ? '6px 13px' : '10px 16px')};
+    padding: ${(props) => (props.link ? '0.6rem 0.87rem' : '0.6rem 1rem')};
     font-size: 1rem;
 
     &.selected {

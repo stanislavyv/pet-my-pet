@@ -1,12 +1,12 @@
 import Categories from './categories';
-import DashboardPetsList from './dashboard-pets-list.js';
+import DashboardListWrapper from './dashboard-list-wrapper';
 
 const Dashboard = () => {
     return (
         <section className="dashboard">
             <h1>Dashboard</h1>
             <Categories />
-            <DashboardPetsList />
+            <DashboardListWrapper />
         </section>
     );
 };

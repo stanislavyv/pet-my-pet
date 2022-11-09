@@ -8,11 +8,11 @@ const StyledPopUp = styled.section`
     border: 1px solid #00000026;
 
     font-weight: bold;
-    min-width: 200px;
-    max-width: 426px;
+    min-width: 12.5rem;
+    max-width: 26.6rem;
     width: 100%;
 
-    height: 230px;
+    height: 14.3rem;
     position: fixed;
     left: 50%;
     top: 50%;

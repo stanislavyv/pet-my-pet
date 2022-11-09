@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
     margin-top: auto;
@@ -6,7 +6,7 @@ const StyledFooter = styled.footer`
     background: #234465;
 
     & p {
-        padding: 16px 0;
+        padding: 1rem 0;
         font-weight: bold;
         margin: 0;
         color: white;
@@ -19,6 +19,6 @@ const Footer = () => {
             <p>@PetMyPet</p>
         </StyledFooter>
     );
-}
+};
 
 export default Footer;

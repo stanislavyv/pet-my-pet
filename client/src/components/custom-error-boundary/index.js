@@ -2,7 +2,7 @@ import { Component } from 'react';
 import styled from 'styled-components';
 
 const StyledErrorBoundary = styled.section`
-    width: 300px;
+    width: 18.75rem;
     margin: 0 auto;
     text-align: center;
 `;

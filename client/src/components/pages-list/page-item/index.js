@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import classNames from 'classnames';
 
 export const StyledPageItem = styled.li`
-    padding: 0 12px;
-    height: 32px;
+    padding: 0 0.75rem;
+    height: 2rem;
     text-align: center;
-    margin: auto 4px;
+    margin: auto 0.25rem;
     color: rgba(0, 0, 0, 0.87);
     box-sizing: border-box;
     align-items: center;
@@ -13,7 +13,7 @@ export const StyledPageItem = styled.li`
     border-radius: 16px;
     line-height: 1.43;
     font-size: 1.3rem;
-    min-width: 32px;
+    min-width: 2rem;
 
     &:hover {
         background-color: #68b1b36e;

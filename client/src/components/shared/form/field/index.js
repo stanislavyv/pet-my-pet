@@ -1,20 +1,22 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import toUpperCase from "../../../../utils/misc/toUpperCase";
-import AuthFieldInputWrapper from "./auth-field-input-wrapper";
-import FieldInputWrapper from "./field-input-wrapper";
+import toUpperCase from '../../../../utils/misc/toUpperCase';
+import AuthFieldInputWrapper from './auth-field-input-wrapper';
+import FieldInputWrapper from './field-input-wrapper';
 
 const StyledField = styled.div`
-    margin-bottom: 10px;
+    margin-bottom: 0.6rem;
 
-    & textarea, & input {
+    & textarea,
+    & input {
         border-radius: 8px;
-        padding: 13px;
+        padding: 0.87rem;
         flex: 1 1 auto;
         border: 1px solid #ccc;
     }
 
-    & textarea:focus, & input:focus {
+    & textarea:focus,
+    & input:focus {
         outline: none;
         border-color: #090;
     }
@@ -23,9 +25,9 @@ const StyledField = styled.div`
         font-weight: bold;
     }
 
-    & label[for="category"] {
+    & label[for='category'] {
         display: inline-block;
-        margin-bottom: 5px;
+        margin-bottom: 0.31rem;
     }
 `;
 
@@ -34,16 +36,12 @@ const Field = ({ children, type, auth }) => {
         <StyledField>
             <label htmlFor={type}>{toUpperCase(type)}</label>
             {auth ? (
-                <AuthFieldInputWrapper>
-                    {children}
-                </AuthFieldInputWrapper>)
-            : (
-                <FieldInputWrapper>
-                    {children}
-                </FieldInputWrapper>
+                <AuthFieldInputWrapper>{children}</AuthFieldInputWrapper>
+            ) : (
+                <FieldInputWrapper>{children}</FieldInputWrapper>
             )}
         </StyledField>
     );
-}
+};
 
 export default Field;

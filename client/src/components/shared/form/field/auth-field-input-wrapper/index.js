@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledAuthFieldInputWrapper = styled.span`
     display: flex;
@@ -15,7 +15,7 @@ const StyledAuthFieldInputWrapper = styled.span`
     & .fas {
         z-index: 2;
         position: relative;
-        padding: 0 0 0 0.8rem;
+        padding: 0 0 0 0.87rem;
         font-size: 0.9em;
         order: 1;
     }
@@ -33,7 +33,7 @@ const StyledAuthFieldInputWrapper = styled.span`
         z-index: 1;
     }
 
-    & input:focus + .actions, 
+    & input:focus + .actions,
     & input:focus + .fas + .actions {
         border-color: #090;
     }
@@ -50,6 +50,6 @@ const AuthFieldInputWrapper = ({ children }) => {
             <span className="actions"></span>
         </StyledAuthFieldInputWrapper>
     );
-}
+};
 
 export default AuthFieldInputWrapper;

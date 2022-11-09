@@ -19,7 +19,7 @@ const StyledEditForm = styled.form`
 
     & button {
         align-self: center;
-        margin: 10px 0;
+        margin: 0.6rem 0;
     }
 `;
 

@@ -7,9 +7,9 @@ import Button from '../../shared/button';
 import CategoriesList from './categories-list';
 
 const StyledCategories = styled.nav`
+    margin: 0.4rem 0;
     display: flex;
     justify-content: center;
-    margin: 10px 10px 20px 10px;
 `;
 
 const Categories = () => {

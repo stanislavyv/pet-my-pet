@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export const Styled = styled(Link)`
     display: block;
-    padding: 6px 13px;
+    padding: 0.37rem 0.81rem;
     border-radius: 6px;
     text-decoration: none;
     font-weight: bold;

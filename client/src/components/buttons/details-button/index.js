@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import StyledLink from '../../shared/link';
 
 const StyledDetails = styled(StyledLink)`
-    padding: 9px 16px;
+    padding: 0.6rem 1rem;
     && {
-        margin-right: 7px;
+        margin-right: 0.45rem;
     }
 `;
 

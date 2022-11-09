@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react';
-import { useAuth } from '../../../contexts/AuthContext';
-import { useNotification } from '../../../contexts/NotificationContext';
-import usePageData from '../../../hooks/usePageData';
+import { useAuth } from '../../../../contexts/AuthContext';
+import { useNotification } from '../../../../contexts/NotificationContext';
+import usePageData from '../../../../hooks/usePageData';
 import { useSearchParams } from 'react-router-dom';
 
-import { getAllPets } from '../../../utils/petService';
+import { getAllPets } from '../../../../utils/petService';
 
-import PetsList from '../../pets-list';
-import OtherPetCard from '../../pet-card/other-pet-card';
-import MyPetCard from '../../pet-card/my-pet-card';
-import PagesList from '../../pages-list';
-import BlankPage from '../../shared/blank-page';
+import PetsList from '../../../pets-list';
+import PagesList from '../../../pages-list';
+import BlankPage from '../../../shared/blank-page';
 
 const DashboardPetsList = () => {
     const [pets, setPets] = useState([]);
@@ -32,20 +30,11 @@ const DashboardPetsList = () => {
             {searchParams.get('ownerid') ? <h1>{email}'s pets</h1> : ''}
             {pets.length > 0 ? (
                 <>
-                    <PetsList>
-                        {pets.map((pet) => {
-                            if (isLoggedIn) {
-                                return pet.creator.email.toLowerCase() ===
-                                    email.toLowerCase() ? (
-                                    <MyPetCard key={pet._id} {...pet} />
-                                ) : (
-                                    <OtherPetCard key={pet._id} {...pet} />
-                                );
-                            }
-
-                            return <OtherPetCard key={pet._id} {...pet} />;
-                        })}
-                    </PetsList>
+                    <PetsList
+                        pets={pets}
+                        isLoggedIn={isLoggedIn}
+                        email={email}
+                    />
                     <PagesList
                         currentPage={currentPage}
                         totalCount={totalItemsCount}

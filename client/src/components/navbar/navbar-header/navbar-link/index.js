@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const StyledNavbarLink = styled(Link)`
-    margin: 10px;
+    margin: 0.6rem;
     padding: 0;
 
     &:hover {

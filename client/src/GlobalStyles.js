@@ -1,14 +1,39 @@
 import { createGlobalStyle } from 'styled-components';
+import { device } from './config/css';
 
 const GlobalStyles = createGlobalStyle`
-    body {
-        padding: 0;
-        margin: 0;
+    html {
+        box-sizing: border-box;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
             "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
             "Helvetica Neue", sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+
+        @media ${device.mobileS} {
+            font-size: 14px;
+        }
+
+        @media ${device.mobileL} {
+            font-size: 16px;
+        }
+
+        @media ${device.desktop} {
+            font-size: 18px;
+        }
+    }
+
+    *, *::before, &::after {
+        box-sizing: inherit;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    p {
+        font-size: inherit;
     }
 
     a {
@@ -57,7 +82,7 @@ const GlobalStyles = createGlobalStyle`
 
     a {
         display: inline-block;
-        margin: 10px;
+        margin: 0.6rem;
     }
 
     button:hover {

@@ -6,7 +6,7 @@ import { deletePet } from '../../../utils/petService';
 const StyledWrapper = styled.div`
     display: flex;
     width: 100%;
-    height: 40px;
+    height: 2.5rem;
 
     button {
         background-color: cadetblue;

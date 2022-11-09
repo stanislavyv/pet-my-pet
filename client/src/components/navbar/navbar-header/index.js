@@ -1,13 +1,14 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import NavbarFirstBar from "./navbar-first-bar";
-import NavbarSecondBar from "./navbar-second-bar";
+import NavbarFirstBar from './navbar-first-bar';
+import NavbarSecondBar from './navbar-second-bar';
 
 const StyledNavbarHeader = styled.section`
     display: flex;
     justify-content: space-between;
 
     & ul {
+        margin: 0 0.6rem;
         display: flex;
         align-items: center;
     }
@@ -18,7 +19,8 @@ const NavbarHeader = () => {
         <StyledNavbarHeader>
             <NavbarFirstBar />
             <NavbarSecondBar />
-        </StyledNavbarHeader>);
-}
+        </StyledNavbarHeader>
+    );
+};
 
 export default NavbarHeader;

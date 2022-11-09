@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 const StyledImage = styled.div`
     width: 100%;
-    height: 270px;
+    height: 16.8rem;
     overflow: hidden;
 
     & {
-        margin-bottom: 11px;
+        margin-bottom: 0.7rem;
     }
 
     & img {

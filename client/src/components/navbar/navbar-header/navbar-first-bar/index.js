@@ -1,3 +1,4 @@
+import { device } from '../../../../config/css';
 import styled from 'styled-components';
 
 import { useAuth } from '../../../../contexts/AuthContext';
@@ -5,9 +6,14 @@ import { useAuth } from '../../../../contexts/AuthContext';
 import NavbarLink from '../navbar-link';
 import MyPetsButton from '../../../buttons/my-pets-button';
 
-const StyledNavbarFirstBar = styled.div`
-    display: flex;
-    align-items: center;
+const StyledNavbarFirstBar = styled.ul`
+    @media ${device.mobileS} {
+        flex-direction: column;
+    }
+
+    @media ${device.laptop} {
+        flex-direction: row;
+    }
 `;
 
 const NavbarFirstBar = () => {
