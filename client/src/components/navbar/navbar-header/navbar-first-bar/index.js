@@ -5,30 +5,77 @@ import { useAuth } from '../../../../contexts/AuthContext';
 
 import NavbarLink from '../navbar-link';
 import MyPetsButton from '../../../buttons/my-pets-button';
+import HamburgerMenu from '../../hamburger-menu';
+import { useState } from 'react';
+import NavbarFirstBarWrapper from './navbar-first-bar-wrapper';
 
 const StyledNavbarFirstBar = styled.ul`
     @media ${device.mobileS} {
+        margin: 0;
+
+        li {
+            border-bottom: 2px solid #234465;
+            width: 100%;
+        }
+
+        a,
+        button {
+            font-size: 1.7rem;
+            color: #234465;
+        }
+
         flex-direction: column;
     }
 
     @media ${device.laptop} {
+        margin: inherit;
+
+        li {
+            border: none;
+            width: auto;
+        }
+
+        a,
+        button {
+            color: white;
+            font-size: inherit;
+        }
+
         flex-direction: row;
     }
 `;
 
 const NavbarFirstBar = () => {
+    const [isNavExpanded, setIsNavExpanded] = useState(false);
     const { isLoggedIn } = useAuth();
 
     return (
-        <StyledNavbarFirstBar>
-            <NavbarLink to="/pets">Dashboard</NavbarLink>
-            {isLoggedIn && (
-                <>
-                    <MyPetsButton />
-                    <NavbarLink to="/pets/create">Add Pet</NavbarLink>
-                </>
-            )}
-        </StyledNavbarFirstBar>
+        <>
+            <HamburgerMenu onClick={() => setIsNavExpanded(!isNavExpanded)} />
+            <NavbarFirstBarWrapper isNavExpanded={isNavExpanded}>
+                <StyledNavbarFirstBar>
+                    <li onClick={() => setIsNavExpanded(!isNavExpanded)}>
+                        <NavbarLink to="/pets">Dashboard</NavbarLink>
+                    </li>
+                    {isLoggedIn && (
+                        <>
+                            <li
+                                onClick={() => setIsNavExpanded(!isNavExpanded)}
+                            >
+                                <MyPetsButton />
+                            </li>
+                            <li
+                                onClick={() => setIsNavExpanded(!isNavExpanded)}
+                            >
+                                <NavbarLink to="/pets/create">
+                                    Add Pet
+                                </NavbarLink>
+                            </li>
+                        </>
+                    )}
+                </StyledNavbarFirstBar>
+            </NavbarFirstBarWrapper>
+        </>
     );
 };
 

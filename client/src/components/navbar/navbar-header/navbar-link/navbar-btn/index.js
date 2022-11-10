@@ -1,10 +1,11 @@
 import { StyledNavbarLink } from '..';
 
-const NavbarButton = ({ onClick, children }) => {
+
+const NavbarButton = ({ color, onClick, children }) => {
     return (
-        <StyledNavbarLink as="button" onClick={onClick}>
+        <StyledNavbarLink  color={color} as="button" onClick={onClick}>
             {children}
-        </StyledNavbarLink>
+        </StyledNavbarLink >
     );
 };
 

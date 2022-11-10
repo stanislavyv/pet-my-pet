@@ -11,10 +11,6 @@ const StyledCategoriesList = styled.ul`
     @media ${device.mobileS} {
         flex-direction: column;
         align-items: center;
-
-        button {
-            margin: 0.6rem;
-        }
     }
 
     @media ${device.laptop} {

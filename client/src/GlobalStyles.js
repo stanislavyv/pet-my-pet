@@ -32,6 +32,10 @@ const GlobalStyles = createGlobalStyle`
         margin: 0;
     }
 
+    a, button, li {
+        transition: background-color 0.2s ease-in-out;
+    }
+
     p {
         font-size: inherit;
     }
@@ -77,12 +81,8 @@ const GlobalStyles = createGlobalStyle`
         background-color: transparent;
         color: white;
         border: none;
-        font-weight: bold;
-    }
-
-    a {
-        display: inline-block;
-        margin: 0.6rem;
+        padding: 0;
+        font-family: inherit;
     }
 
     button:hover {

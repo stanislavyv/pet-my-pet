@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import StyledLink from '../../shared/link';
 
 const StyledEdit = styled(StyledLink)`
-    pad: 0.6rem 1rem;
+    padding: 0.6rem 1rem;
     && {
         margin-right: 0.45rem;
     }

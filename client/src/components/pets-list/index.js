@@ -18,6 +18,7 @@ const StyledPetsList = styled.ul`
 
     @media ${device.laptop} {
         flex-direction: row;
+        justify-content: space-around;
         max-width: 1100px;
     }
 

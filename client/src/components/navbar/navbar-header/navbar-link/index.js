@@ -1,16 +1,24 @@
+import { device } from '../../../../config/css';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const StyledNavbarLink = styled(Link)`
-    margin: 0.6rem;
-    padding: 0;
-
-    &:hover {
-        text-decoration: underline;
+    @media ${device.mobileS} {
+        text-align: center;
+        margin: 0.6rem 0;
+        width: 100%;
     }
 
-    &:active {
-        transform: scale(0.97);
+    @media ${device.laptop} {
+        margin: 0.6rem;
+        width: auto;
+
+        &:hover {
+            text-decoration: underline;
+        }
+        &:active {
+            transform: scale(0.97);
+        }
     }
 `;
 

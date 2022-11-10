@@ -4,7 +4,7 @@ import DashboardPetsList from './dashboard-pets-list.js';
 const StyledDashboardListWrapper = styled.section`
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     align-content: center;
     flex-wrap: wrap;
