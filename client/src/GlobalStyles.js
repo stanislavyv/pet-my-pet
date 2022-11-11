@@ -32,6 +32,10 @@ const GlobalStyles = createGlobalStyle`
         margin: 0;
     }
 
+    html, body {
+        height: 100%;
+    }
+
     a, button, li {
         transition: background-color 0.2s ease-in-out;
     }

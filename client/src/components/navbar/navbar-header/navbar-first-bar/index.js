@@ -60,24 +60,27 @@ const NavbarFirstBar = () => {
         }
     }, [isNavExpanded]);
 
+    // for list items - to close the modal onClick but keep the body scrolling
+    const setExpanded = () => {
+        if (isNavExpanded) {
+            setIsNavExpanded(false);
+        }
+    };
+
     return (
         <>
             <HamburgerMenu onClick={() => setIsNavExpanded(!isNavExpanded)} />
             <NavbarFirstBarWrapper isNavExpanded={isNavExpanded}>
                 <StyledNavbarFirstBar>
-                    <li onClick={() => setIsNavExpanded(!isNavExpanded)}>
+                    <li onClick={setExpanded}>
                         <NavbarLink to="/pets">Dashboard</NavbarLink>
                     </li>
                     {isLoggedIn && (
                         <>
-                            <li
-                                onClick={() => setIsNavExpanded(!isNavExpanded)}
-                            >
+                            <li onClick={setExpanded}>
                                 <MyPetsButton />
                             </li>
-                            <li
-                                onClick={() => setIsNavExpanded(!isNavExpanded)}
-                            >
+                            <li onClick={setExpanded}>
                                 <NavbarLink to="/pets/create">
                                     Add Pet
                                 </NavbarLink>

@@ -13,6 +13,7 @@ import Footer from './components/footer';
 import Notification from './components/notification';
 
 import AppRoutes from './routes/routes';
+import Content from './components/content';
 
 function App() {
     return (
@@ -20,12 +21,14 @@ function App() {
             <GlobalStyles />
             <AuthProvider>
                 <Header />
-                <CustomErrorBoundary>
-                    <NotificationProvider>
-                        <AppRoutes />
-                        <Notification />
-                    </NotificationProvider>
-                </CustomErrorBoundary>
+                <Content>
+                    <CustomErrorBoundary>
+                        <NotificationProvider>
+                            <AppRoutes />
+                            <Notification />
+                        </NotificationProvider>
+                    </CustomErrorBoundary>
+                </Content>
             </AuthProvider>
             <Footer />
         </>
