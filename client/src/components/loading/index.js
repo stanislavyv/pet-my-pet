@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { device } from '../../config/css';
 import Spinner from './spinner';
 
 const StyledLoading = styled.div`
@@ -12,28 +11,22 @@ const StyledLoading = styled.div`
     z-index: 10;
 
     overflow: hidden;
-    backdrop-filter: blur(7px);
+    backdrop-filter: ${(props) => (props.auth ? 'blur(7px)' : 'unset')};
+    background-color: ${(props) => (props.auth ? 'transparent' : 'white')};
 
-    /* footer is 52px, the rest is header */
-    @media ${device.mobileS} {
-        min-height: ${(props) =>
-            props.auth ? '100vh' : 'calc(100vh - (108px + 52px))'};
-    }
-
-    @media ${device.tablet} {
-        min-height: ${(props) =>
-            props.auth ? '100vh' : 'calc(100vh - (135px + 52px))'};
-    }
-
-    @media ${device.laptop} {
-        min-height: ${(props) =>
-            props.auth ? '100vh' : 'calc(100vh - (67px + 52px))'};
-    }
+    /* 52px is footer, which may be absent if the element is loaded at 
+       the same time as DashboardPetsList*/
+    min-height: ${(props) =>
+        props.type === 'auth'
+            ? '100vh'
+            : props.type === 'petsList'
+            ? 'calc(var(--min-height) + 52px)'
+            : 'inherit'};
 `;
 
-const Loading = ({ auth }) => {
+const Loading = ({ type }) => {
     return (
-        <StyledLoading auth={auth}>
+        <StyledLoading type={type}>
             <Spinner />
         </StyledLoading>
     );

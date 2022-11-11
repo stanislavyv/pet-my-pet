@@ -9,11 +9,11 @@ import NotificationProvider from './contexts/NotificationContext';
 import CustomErrorBoundary from './components/custom-error-boundary';
 
 import Header from './components/header';
-import Footer from './components/footer';
+import Content from './components/content';
 import Notification from './components/notification';
+import Footer from './components/footer';
 
 import AppRoutes from './routes/routes';
-import Content from './components/content';
 
 function App() {
     return (
@@ -21,14 +21,14 @@ function App() {
             <GlobalStyles />
             <AuthProvider>
                 <Header />
-                <Content>
-                    <CustomErrorBoundary>
-                        <NotificationProvider>
+                <CustomErrorBoundary>
+                    <NotificationProvider>
+                        <Content>
                             <AppRoutes />
                             <Notification />
-                        </NotificationProvider>
-                    </CustomErrorBoundary>
-                </Content>
+                        </Content>
+                    </NotificationProvider>
+                </CustomErrorBoundary>
             </AuthProvider>
             <Footer />
         </>

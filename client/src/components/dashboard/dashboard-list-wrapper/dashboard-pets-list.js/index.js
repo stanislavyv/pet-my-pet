@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+
 import { useAuth } from '../../../../contexts/AuthContext';
 import { useNotification } from '../../../../contexts/NotificationContext';
 import usePageData from '../../../../hooks/usePageData';
 import { useSearchParams } from 'react-router-dom';
 
+import { trackPromise } from 'react-promise-tracker';
 import { getAllPets } from '../../../../utils/petService';
 
 import PetsList from '../../../pets-list';
@@ -19,10 +21,12 @@ const DashboardPetsList = () => {
 
     // use notification.message so useEffect() doesn't get called twice on notification state change
     useEffect(() => {
-        getAllPets().then(({ count, result }) => {
+        trackPromise(getAllPets()).then(({ count, result }) => {
             setPets(result);
             dispatchPageData({ type: 'setCount', payload: count });
         });
+
+        return () => {};
     }, [notification.message, searchParams]);
 
     return (

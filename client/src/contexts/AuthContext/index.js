@@ -28,7 +28,7 @@ const AuthProvider = ({ children }) => {
     return (
         <>
             {loading ? (
-                <Loading auth />
+                <Loading type="auth" />
             ) : (
                 <AuthContext.Provider value={authValue}>
                     {children}
