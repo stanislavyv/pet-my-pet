@@ -8,12 +8,14 @@ import NavbarSecondBarAnon from './navbar-second-bar-anon';
 
 const StyledNavbarSecondBarWrapper = styled.div`
     @media ${device.mobileS} {
-        font-size: 1.3rem;
+        li {
+            margin: 0 0.6rem;
+        }
 
         && li,
         li a,
         li button {
-            margin: 0 0.6rem;
+            font-size: 1.3rem;
         }
 
         ul {

@@ -1,13 +1,14 @@
 import { device } from '../../../../config/css';
 import styled from 'styled-components';
 
+import { useState } from 'react';
 import { useAuth } from '../../../../contexts/AuthContext';
 
 import NavbarLink from '../navbar-link';
 import MyPetsButton from '../../../buttons/my-pets-button';
 import HamburgerMenu from '../../hamburger-menu';
-import { useState } from 'react';
 import NavbarFirstBarWrapper from './navbar-first-bar-wrapper';
+import { useEffect } from 'react';
 
 const StyledNavbarFirstBar = styled.ul`
     @media ${device.mobileS} {
@@ -48,6 +49,16 @@ const StyledNavbarFirstBar = styled.ul`
 const NavbarFirstBar = () => {
     const [isNavExpanded, setIsNavExpanded] = useState(false);
     const { isLoggedIn } = useAuth();
+
+    useEffect(() => {
+        if (isNavExpanded) {
+            document.body.style.overflow = 'hidden';
+
+            return () => {
+                document.body.style.overflow = 'unset';
+            };
+        }
+    }, [isNavExpanded]);
 
     return (
         <>

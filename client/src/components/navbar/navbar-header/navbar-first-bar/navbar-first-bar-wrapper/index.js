@@ -8,7 +8,7 @@ const StyledNavbarFirstBarWrapper = styled.div`
         }
 
         position: absolute;
-        top: 89px;
+        top: 101px;
         left: 0;
         z-index: 1;
         width: 100%;
