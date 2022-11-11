@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { useEffect } from 'react';
+
 import Spinner from './spinner';
 
 const StyledLoading = styled.div`
@@ -11,8 +13,10 @@ const StyledLoading = styled.div`
     z-index: 10;
 
     overflow: hidden;
-    backdrop-filter: ${(props) => (props.auth ? 'blur(7px)' : 'unset')};
-    background-color: ${(props) => (props.auth ? 'transparent' : 'white')};
+    backdrop-filter: ${(props) =>
+        props.type === 'auth' ? 'blur(7px)' : 'unset'};
+    background-color: ${(props) =>
+        props.type === 'auth' ? 'transparent' : 'white'};
 
     /* 52px is footer, which may be absent if the element is loaded at 
        the same time as DashboardPetsList*/
@@ -20,11 +24,19 @@ const StyledLoading = styled.div`
         props.type === 'auth'
             ? '100vh'
             : props.type === 'petsList'
-            ? 'calc(var(--min-height) + 52px)'
+            ? 'calc(var(--min-height, 100vh - 52px) + 52px)'
             : 'inherit'};
 `;
 
 const Loading = ({ type }) => {
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, []);
+
     return (
         <StyledLoading type={type}>
             <Spinner />

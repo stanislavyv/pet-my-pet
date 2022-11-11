@@ -11,7 +11,8 @@ const StyledContent = styled.div`
     /* 52px footer height, the rest is header */ 
     @media
         ${device.mobileS} {
-        --min-height: calc(100vh - (108px + 52px));
+        /* --min-height: calc(100vh - (108px + 52px)); */
+        --min-height: 100vh;
     }
 
     @media ${device.tablet} {
@@ -22,11 +23,11 @@ const StyledContent = styled.div`
         --min-height: calc(100vh - (67px + 52px));
     }
 
-    min-height: var(--min-height);
+    min-height: var(--min-height, 100vh);
 `;
 
 const Content = ({ children }) => {
-    const { promiseInProgress } = usePromiseTracker();
+    const { promiseInProgress } = usePromiseTracker({ delay: 500 });
 
     return (
         <>
