@@ -5,9 +5,9 @@ const StyledCategoriesList = styled.ul`
     @media ${device.mobileS} {
         &&.expanded {
             display: flex;
-            flex-direction: column;
         }
 
+        flex-direction: column;
         display: none;
         position: relative;
         width: 9.8rem;
