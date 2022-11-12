@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Styled = styled(Link)`
+    font-size: var(--font-size, 1rem);
     display: block;
     padding: 0.37rem 0.81rem;
     border-radius: 6px;

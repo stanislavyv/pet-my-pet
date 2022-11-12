@@ -20,7 +20,7 @@ const OtherPetDetails = () => {
 
     return (
         <PetDetailsWrapper>
-            <PetCardWrapper otherDetails>
+            <PetCardWrapper bigger>
                 <h3 className="pet-name">{pet.name}</h3>
                 <p className="pet-counter">
                     <span className="bold-span">Pet counter:</span> {likes}

@@ -3,7 +3,6 @@ import { Styled } from '../link';
 
 export const StyledButton = styled(Styled)`
     padding: ${(props) => (props.link ? '0.6rem 0.87rem' : '0.6rem 1rem')};
-    font-size: 1rem;
 
     &.selected {
         background: rgb(248, 215, 107);
