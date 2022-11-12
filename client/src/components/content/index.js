@@ -6,24 +6,21 @@ import Loading from '../loading';
 
 const StyledContent = styled.div`
     overflow: hidden;
-    --min-height: 100vh: 
 
-    /* 52px footer height, the rest is header */ 
-    @media
-        ${device.mobileS} {
-        /* --min-height: calc(100vh - (108px + 52px)); */
-        --min-height: 100vh;
+    /* 52px footer height, the rest is header */
+    @media ${device.mobileS} {
+        --content-height: calc(100vh - (108px + 52px));
     }
 
     @media ${device.tablet} {
-        --min-height: calc(100vh - (135px + 52px));
+        --content-height: calc(100vh - (135px + 52px));
     }
 
     @media ${device.laptop} {
-        --min-height: calc(100vh - (67px + 52px));
+        --content-height: calc(100vh - (67px + 52px));
     }
 
-    min-height: var(--min-height, 100vh);
+    min-height: var(--content-height, 100vh);
 `;
 
 const Content = ({ children }) => {

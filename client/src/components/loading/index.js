@@ -24,7 +24,7 @@ const StyledLoading = styled.div`
         props.type === 'auth'
             ? '100vh'
             : props.type === 'petsList'
-            ? 'calc(var(--min-height, 100vh - 52px) + 52px)'
+            ? 'calc(var(--content-height, 100vh - 52px) + 52px)'
             : 'inherit'};
 `;
 

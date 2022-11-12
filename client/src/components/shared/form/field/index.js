@@ -11,6 +11,7 @@ const StyledField = styled.div`
     & input {
         border-radius: 8px;
         padding: 0.87rem;
+        width: 100%;
         flex: 1 1 auto;
         border: 1px solid #ccc;
     }

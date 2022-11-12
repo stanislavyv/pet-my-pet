@@ -27,6 +27,10 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: inherit;
     }
 
+    :root {
+        --content-height: 100vh;
+    }
+
     body {
         padding: 0;
         margin: 0;

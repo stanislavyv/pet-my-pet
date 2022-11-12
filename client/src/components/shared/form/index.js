@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const StyledForm = styled.form`
-    margin: 5rem auto;
+    margin: 5rem 1rem;
     max-width: 31.25rem;
     width: 100%;
 `;

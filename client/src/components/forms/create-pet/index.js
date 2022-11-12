@@ -13,6 +13,7 @@ import Form from '../../shared/form';
 import Fieldset from '../../shared/form/fieldset';
 import FormLegend from '../../shared/form/form-legend';
 import Field from '../../shared/form/field';
+import FormWrapper from '../../shared/form/form-wrapper';
 
 const errorReducer = (state, { type, payload }) => {
     switch (type) {
@@ -112,57 +113,59 @@ const CreatePet = () => {
     };
 
     return (
-        <Form onSubmitHandler={onCreateSubmitHandler}>
-            <Fieldset>
-                <FormLegend>Add new Pet</FormLegend>
-                <Field type="name">
-                    <input
-                        type="text"
-                        name="name"
-                        id="name"
-                        placeholder="Name"
-                        onBlur={onNameBlurHandler}
-                    />
-                </Field>
-                <InputError message={errors.name} />
+        <FormWrapper>
+            <Form onSubmitHandler={onCreateSubmitHandler}>
+                <Fieldset>
+                    <FormLegend>Add new Pet</FormLegend>
+                    <Field type="name">
+                        <input
+                            type="text"
+                            name="name"
+                            id="name"
+                            placeholder="Name"
+                            onBlur={onNameBlurHandler}
+                        />
+                    </Field>
+                    <InputError message={errors.name} />
 
-                <Field type="description">
-                    <textarea
-                        rows="4"
-                        cols="45"
-                        type="text"
-                        name="description"
-                        id="description"
-                        resize="none"
-                        placeholder="Description"
-                        onBlur={onDescriptionBlurHandler}
-                    ></textarea>
-                </Field>
-                <InputError message={errors.description} />
+                    <Field type="description">
+                        <textarea
+                            rows="4"
+                            cols="45"
+                            type="text"
+                            name="description"
+                            id="description"
+                            resize="none"
+                            placeholder="Description"
+                            onBlur={onDescriptionBlurHandler}
+                        ></textarea>
+                    </Field>
+                    <InputError message={errors.description} />
 
-                <Field type="image">
-                    <input
-                        type="text"
-                        name="imageURL"
-                        id="image"
-                        placeholder="Image"
-                        onBlur={onImageUrlBlurHandler}
-                    />
-                </Field>
-                <InputError message={errors.imageURL} />
-                <Field type="category">
-                    <select type="text" name="category">
-                        <option>Cat</option>
-                        <option>Dog</option>
-                        <option>Parrot</option>
-                        <option>Reptile</option>
-                        <option>Other</option>
-                    </select>
-                </Field>
+                    <Field type="image">
+                        <input
+                            type="text"
+                            name="imageURL"
+                            id="image"
+                            placeholder="Image"
+                            onBlur={onImageUrlBlurHandler}
+                        />
+                    </Field>
+                    <InputError message={errors.imageURL} />
+                    <Field type="category">
+                        <select type="text" name="category">
+                            <option>Cat</option>
+                            <option>Dog</option>
+                            <option>Parrot</option>
+                            <option>Reptile</option>
+                            <option>Other</option>
+                        </select>
+                    </Field>
 
-                <Button type="submit">Add Pet</Button>
-            </Fieldset>
-        </Form>
+                    <Button type="submit">Add Pet</Button>
+                </Fieldset>
+            </Form>
+        </FormWrapper>
     );
 };
 

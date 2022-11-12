@@ -8,6 +8,7 @@ import Form from '../../shared/form';
 import FormLegend from '../../shared/form/form-legend';
 import Field from '../../shared/form/field';
 import InputError from '../../shared/input-error';
+import FormWrapper from '../../shared/form/form-wrapper';
 
 const AuthForm = ({ type, onSubmitHandler, setIsValid }) => {
     const [errors, setErrors] = useState({
@@ -60,34 +61,36 @@ const AuthForm = ({ type, onSubmitHandler, setIsValid }) => {
     };
 
     return (
-        <Form onSubmitHandler={onSubmitHandler}>
-            <Fieldset>
-                <FormLegend>{type}</FormLegend>
-                <Field type="email" auth>
-                    <input
-                        type="text"
-                        name="email"
-                        placeholder="Email"
-                        onBlur={onEmailBlurHandler}
-                    />
-                    <i className="fas fa-user"></i>
-                </Field>
-                <InputError message={errors.email} />
+        <FormWrapper>
+            <Form onSubmitHandler={onSubmitHandler}>
+                <Fieldset>
+                    <FormLegend>{type}</FormLegend>
+                    <Field type="email" auth>
+                        <input
+                            type="text"
+                            name="email"
+                            placeholder="Email"
+                            onBlur={onEmailBlurHandler}
+                        />
+                        <i className="fas fa-user"></i>
+                    </Field>
+                    <InputError message={errors.email} />
 
-                <Field type="password" auth>
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        onBlur={onPasswordBlurHandler}
-                    />
-                    <i className="fas fa-key"></i>
-                </Field>
-                <InputError message={errors.password} />
+                    <Field type="password" auth>
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            onBlur={onPasswordBlurHandler}
+                        />
+                        <i className="fas fa-key"></i>
+                    </Field>
+                    <InputError message={errors.password} />
 
-                <Button type="submit">{type}</Button>
-            </Fieldset>
-        </Form>
+                    <Button type="submit">{type}</Button>
+                </Fieldset>
+            </Form>
+        </FormWrapper>
     );
 };
 
