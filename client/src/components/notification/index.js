@@ -7,7 +7,7 @@ import ErrorNotification from './error-notification';
 
 const StyledNotifications = styled.div`
     position: fixed;
-    bottom: 0;
+    bottom: 7%;
     left: 9%;
     width: 80vw;
     margin: 0 auto;
@@ -20,9 +20,9 @@ const StyledNotifications = styled.div`
         color: white;
         font-weight: 500;
         font-style: oblique;
-        font-size: 1.3rem;
+        font-size: 1.5rem;
         text-decoration: underline;
-        padding: 1%;
+        padding: 2%;
         text-align: center;
     }
 
