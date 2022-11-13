@@ -14,6 +14,7 @@ import BlankPage from '../../../shared/blank-page';
 
 const DashboardPetsList = () => {
     const [pets, setPets] = useState([]);
+    const [loading, setLoading] = useState(true);
     const { email, isLoggedIn } = useAuth();
     const { notification } = useNotification();
     const [{ currentPage, totalItemsCount }, dispatchPageData] = usePageData();
@@ -21,10 +22,16 @@ const DashboardPetsList = () => {
 
     // use notification.message so useEffect() doesn't get called twice on notification state change
     useEffect(() => {
-        trackPromise(getAllPets()).then(({ count, result }) => {
-            setPets(result);
-            dispatchPageData({ type: 'setCount', payload: count });
-        });
+        setLoading(true);
+        trackPromise(getAllPets())
+            .then(({ count, result }) => {
+                setLoading(false);
+                setPets(result);
+                dispatchPageData({ type: 'setCount', payload: count });
+            })
+            .catch(() => {
+                setLoading(false);
+            });
 
         return () => {};
     }, [notification.message, searchParams]);
@@ -47,11 +54,15 @@ const DashboardPetsList = () => {
                 </>
             ) : (
                 <>
-                    {searchParams.has('ownerid') ? (
-                        <BlankPage>You haven't added any pets yet...</BlankPage>
-                    ) : (
-                        <BlankPage>Nothing to see here...</BlankPage>
-                    )}
+                    {console.log(loading)}
+                    {!loading &&
+                        (searchParams.has('ownerid') ? (
+                            <BlankPage>
+                                You haven't added any pets yet...
+                            </BlankPage>
+                        ) : (
+                            <BlankPage>Nothing to see here...</BlankPage>
+                        ))}
                 </>
             )}
         </>
