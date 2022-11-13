@@ -9,6 +9,7 @@ import MyPetsButton from '../../../buttons/my-pets-button';
 import HamburgerMenu from '../../hamburger-menu';
 import NavbarFirstBarWrapper from './navbar-first-bar-wrapper';
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const StyledNavbarFirstBar = styled.ul`
     @media ${device.mobileS} {
@@ -49,6 +50,11 @@ const StyledNavbarFirstBar = styled.ul`
 const NavbarFirstBar = () => {
     const [isNavExpanded, setIsNavExpanded] = useState(false);
     const { isLoggedIn } = useAuth();
+    const location = useLocation();
+
+    useEffect(() => {
+        minimizeNav();
+    }, [location]);
 
     useEffect(() => {
         if (isNavExpanded) {
@@ -61,7 +67,7 @@ const NavbarFirstBar = () => {
     }, [isNavExpanded]);
 
     // for list items - to close the modal onClick but keep the body scrolling
-    const setExpanded = () => {
+    const minimizeNav = () => {
         if (isNavExpanded) {
             setIsNavExpanded(false);
         }
@@ -72,15 +78,15 @@ const NavbarFirstBar = () => {
             <HamburgerMenu onClick={() => setIsNavExpanded(!isNavExpanded)} />
             <NavbarFirstBarWrapper isNavExpanded={isNavExpanded}>
                 <StyledNavbarFirstBar>
-                    <li onClick={setExpanded}>
+                    <li onClick={minimizeNav}>
                         <NavbarLink to="/pets">Dashboard</NavbarLink>
                     </li>
                     {isLoggedIn && (
                         <>
-                            <li onClick={setExpanded}>
+                            <li onClick={minimizeNav}>
                                 <MyPetsButton />
                             </li>
-                            <li onClick={setExpanded}>
+                            <li onClick={minimizeNav}>
                                 <NavbarLink to="/pets/create">
                                     Add Pet
                                 </NavbarLink>

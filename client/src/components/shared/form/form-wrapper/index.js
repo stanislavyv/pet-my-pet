@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const StyledFormWrapper = styled.div`
-    height: var(--content-height, 100%);
+    height: var(--content-height + 10vh, 100vh);
     width: 100vw;
 
     display: flex;
