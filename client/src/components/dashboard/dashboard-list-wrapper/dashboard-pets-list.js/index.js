@@ -28,6 +28,7 @@ const DashboardPetsList = () => {
                 setLoading(false);
                 setPets(result);
                 dispatchPageData({ type: 'setCount', payload: count });
+                window.scrollTo(0, 0);
             })
             .catch(() => {
                 setLoading(false);
