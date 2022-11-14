@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy } from 'react';
 
 import { useAuth } from '../../../../contexts/AuthContext';
 import { useNotification } from '../../../../contexts/NotificationContext';
@@ -10,7 +10,7 @@ import { getAllPets } from '../../../../utils/petService';
 
 import PetsList from '../../../pets-list';
 import PagesList from '../../../pages-list';
-import BlankPage from '../../../shared/blank-page';
+const BlankPage = lazy(() => import('../../../shared/blank-page'));
 
 const DashboardPetsList = () => {
     const [pets, setPets] = useState([]);
@@ -55,7 +55,6 @@ const DashboardPetsList = () => {
                 </>
             ) : (
                 <>
-                    {console.log(loading)}
                     {!loading &&
                         (searchParams.has('ownerid') ? (
                             <BlankPage>
