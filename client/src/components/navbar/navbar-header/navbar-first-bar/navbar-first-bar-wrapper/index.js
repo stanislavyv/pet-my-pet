@@ -9,12 +9,12 @@ const StyledNavbarFirstBarWrapper = styled.div`
 
         position: fixed;
         z-index: 9;
-        top: var(--navbar-height, 93px);
+        top: 0;
         left: 0;
         width: 100%;
         height: calc(100vh);
         display: none;
-        background-color: white;
+        background-color: rgb(240 246 255 / 93%);
     }
 
     @media ${device.laptop} {
@@ -26,10 +26,11 @@ const StyledNavbarFirstBarWrapper = styled.div`
     } ;
 `;
 
-const NavbarFirstBarWrapper = ({ children, isNavExpanded }) => {
+const NavbarFirstBarWrapper = ({ children, isNavExpanded, onClick }) => {
     return (
         <StyledNavbarFirstBarWrapper
             className={isNavExpanded ? 'expanded' : ''}
+            onClick={onClick}
         >
             {children}
         </StyledNavbarFirstBarWrapper>

@@ -76,17 +76,20 @@ const NavbarFirstBar = () => {
     return (
         <>
             <HamburgerMenu onClick={() => setIsNavExpanded(!isNavExpanded)} />
-            <NavbarFirstBarWrapper isNavExpanded={isNavExpanded}>
+            <NavbarFirstBarWrapper
+                onClick={minimizeNav}
+                isNavExpanded={isNavExpanded}
+            >
                 <StyledNavbarFirstBar>
-                    <li onClick={minimizeNav}>
+                    <li>
                         <NavbarLink to="/pets">Dashboard</NavbarLink>
                     </li>
                     {isLoggedIn && (
                         <>
-                            <li onClick={minimizeNav}>
+                            <li>
                                 <MyPetsButton />
                             </li>
-                            <li onClick={minimizeNav}>
+                            <li>
                                 <NavbarLink to="/pets/create">
                                     Add Pet
                                 </NavbarLink>
