@@ -29,6 +29,7 @@ const GlobalStyles = createGlobalStyle`
 
     :root {
         --content-height: 100vh;
+        --navbar-height: 67px /*laptop*/
     }
 
     body {

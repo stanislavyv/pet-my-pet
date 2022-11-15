@@ -7,22 +7,14 @@ const StyledNavbarFirstBarWrapper = styled.div`
             display: block;
         }
 
-        position: absolute;
+        position: fixed;
         z-index: 9;
-        top: 101px;
+        top: var(--navbar-height, 93px);
         left: 0;
         width: 100%;
         height: calc(100vh);
         display: none;
         background-color: white;
-    }
-
-    @media (min-width: 360px) and (max-width: 425px) {
-        top: 80px;
-    }
-
-    @media ${device.tablet} {
-        top: 121px;
     }
 
     @media ${device.laptop} {

@@ -18,7 +18,7 @@ const StyledHamburger = styled.button`
     }
 
     @media ${device.tablet} {
-        max-width: 6rem;
+        max-width: 5rem;
     }
 
     @media ${device.laptop} {

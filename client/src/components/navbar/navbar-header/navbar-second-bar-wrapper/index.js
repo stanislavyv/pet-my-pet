@@ -12,6 +12,15 @@ const StyledNavbarSecondBarWrapper = styled.div`
             margin: 0 0.6rem;
         }
 
+        li:first-of-type {
+            margin-bottom: 0.5rem;
+        }
+
+        li a,
+        li button {
+            margin: 0 !important;
+        }
+
         && li,
         li a,
         li button {
@@ -30,6 +39,10 @@ const StyledNavbarSecondBarWrapper = styled.div`
             font-size: 1.4rem;
         }
 
+        li:first-of-type {
+            margin-bottom: 0;
+        }
+
         ul {
             flex-direction: row;
         }
@@ -39,11 +52,16 @@ const StyledNavbarSecondBarWrapper = styled.div`
         && li,
         li a,
         li button {
-            font-size: 1rem;
+            font-size: inherit;
         }
 
         li {
-            margin: 0;
+            margin: inherit;
+        }
+
+        li a,
+        li button {
+            margin: inherit !important;
         }
     }
 `;

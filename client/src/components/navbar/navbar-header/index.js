@@ -7,7 +7,6 @@ const StyledNavbarHeader = styled.section`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
 
     li {
         margin: 0 0.25rem;
