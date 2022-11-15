@@ -9,6 +9,10 @@ const StyledNavbar = styled.nav`
     color: white;
 
     @media ${device.mobileS} {
+        --navbar-height: 98px;
+    }
+
+    @media (min-width: 357px) {
         --navbar-height: 93px;
     }
 
