@@ -18,15 +18,13 @@ const OtherPetCard = React.memo((pet) => {
         <PetCardWrapper as="li">
             <PetCard pet={{ ...pet, category: toUpperCase(pet.category) }} />
             <PetInfo>
-                <>
-                    <OtherPetLoggedButton
-                        id={pet._id}
-                        parentCallback={toggleLike}
-                        hasAlreadyLiked={hasAlreadyLiked}
-                    />
-                    <DetailsButton id={pet._id} />
-                    <i className="fas fa-heart"></i> <span>{likes}</span>
-                </>
+                <OtherPetLoggedButton
+                    id={pet._id}
+                    parentCallback={toggleLike}
+                    hasAlreadyLiked={hasAlreadyLiked}
+                />
+                <DetailsButton id={pet._id} />
+                <i className="fas fa-heart"></i> <span>{likes}</span>
             </PetInfo>
         </PetCardWrapper>
     );

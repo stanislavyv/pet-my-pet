@@ -24,8 +24,7 @@ const StyledWrapper = styled.section.attrs((props) => ({
         margin: 0.25rem 0.6rem 0 0.6rem;
     }
 
-    & .pet-category,
-    & .pet-owner {
+    & .pet-category {
         margin: 0.55rem 0.6rem 0 0.6rem;
     }
 

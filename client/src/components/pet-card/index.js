@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import arePetsEqual from '../../utils/misc/arePetsEqual';
+import PetOwnerLink from './other-pet-card/pet-owner-link';
 
 import PetImage from './pet-image';
 
@@ -22,9 +23,7 @@ const PetCard = React.memo(({ pet }) => {
             <p className="pet-category">
                 <span className="bold-span">Category:</span> {pet.category}
             </p>
-            <p className="pet-owner">
-                <span className="bold-span">Owner:</span> {pet.creator.email}
-            </p>
+            <PetOwnerLink creator={pet.creator} />
             <p className="pet-description">{pet.description}</p>
         </StyledPetCard>
     );
