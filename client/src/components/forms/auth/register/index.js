@@ -19,9 +19,14 @@ const RegisterForm = () => {
         }
 
         const email = e.target.email.value;
+        const username = e.target.username.value;
         const password = e.target.password.value;
 
-        createUser(email.toLowerCase().trim(), password).then((res) => {
+        createUser(
+            email.toLowerCase().trim(),
+            username.toLowerCase().trim(),
+            password
+        ).then((res) => {
             if (res) {
                 navigate('/');
             } else {

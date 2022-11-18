@@ -3,9 +3,9 @@ const EMAIL_PATTERN =
 
 const PASSWORD_PATTERN = /^[a-zA-Z0-9!@#$%^&*+\-_]{6,}$/;
 
-const IMAGE_URL_PATTERN = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/;
+const IMAGE_URL_PATTERN = /^(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)$/;
 
-const USERNAME_PATTERN = /^[a-zA-Z0-9\-!@#$%^&*+\-_]{4,}$/;
+const USERNAME_PATTERN = /^[a-zA-Z0-9!@#$%^&*+\-_]{4,}$/;
 
 export const isDescriptionValid = (value) => {
     return value.length >= 10 && value.length <= 50;
@@ -25,6 +25,10 @@ export const isPasswordRightFormat = (value) => {
 
 export const isEmailValid = (value) => {
     return String(value).toLowerCase().match(EMAIL_PATTERN);
+};
+
+export const isUsernameRightLength = (value) => {
+    return value.length >= 4 && value.length <= 15;
 };
 
 export const isUsernameValid = (value) => {

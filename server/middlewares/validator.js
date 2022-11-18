@@ -35,6 +35,8 @@ exports.validateUser = [
         .withMessage('Username cannot be empty')
         .isLength({ min: 4 })
         .withMessage('Username must be atleast 4 characters long')
+        .isLength({ max: 15 })
+        .withMessage('Username must be no more than 15 characters long')
         .matches(USERNAME_PATTERN)
         .withMessage('Please provide a valid username'),
     body('email')

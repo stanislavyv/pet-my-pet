@@ -13,6 +13,7 @@ import FormWrapper from '../../shared/form/form-wrapper';
 const AuthForm = ({ type, onSubmitHandler, setIsValid }) => {
     const [errors, setErrors] = useState({
         email: '',
+        username: '',
         password: '',
     });
 
@@ -21,9 +22,9 @@ const AuthForm = ({ type, onSubmitHandler, setIsValid }) => {
             return;
         }
 
-        const emailValue = e.target.value;
+        const usernameValue = e.target.value;
 
-        if (!formValidator.isEmailValid(emailValue)) {
+        if (!formValidator.isEmailValid(usernameValue)) {
             setErrors((state) => ({
                 ...state,
                 email: 'Please provide a valid email.',
@@ -60,11 +61,49 @@ const AuthForm = ({ type, onSubmitHandler, setIsValid }) => {
         }
     };
 
+    const onUsernameBlurHandler = (e) => {
+        if (type === 'Login') {
+            return;
+        }
+
+        const usernameValue = e.target.value;
+
+        if (!formValidator.isUsernameRightLength(usernameValue)) {
+            setErrors((state) => ({
+                ...state,
+                username: 'Username must be between 4 and 15 characters long!',
+            }));
+            setIsValid(false);
+        } else if (!formValidator.isUsernameValid(usernameValue)) {
+            setErrors((state) => ({
+                ...state,
+                username: 'Username contains illegal characters!',
+            }));
+            setIsValid(false);
+        } else {
+            setErrors((state) => ({ ...state, username: '' }));
+            setIsValid(true);
+        }
+    };
+
     return (
         <FormWrapper>
             <Form onSubmitHandler={onSubmitHandler}>
                 <Fieldset>
                     <FormLegend>{type}</FormLegend>
+                    {type === 'Register' && (
+                        <>
+                            <Field type="username" auth>
+                                <input
+                                    type="text"
+                                    name="username"
+                                    placeholder="Username"
+                                    onBlur={onUsernameBlurHandler}
+                                />
+                            </Field>
+                            <InputError message={errors.username} />
+                        </>
+                    )}
                     <Field type="email" auth>
                         <input
                             type="text"
