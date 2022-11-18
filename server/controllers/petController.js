@@ -39,7 +39,7 @@ routes.get('/:id', (req, res) => {
             res.status(200).json(pet);
         });
     } catch (e) {
-        console.log(e);
+        res.status(404).json({ message: 'Pet Not Found' });
     }
 });
 
