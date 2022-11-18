@@ -6,11 +6,11 @@ exports.createUser = ({ id, username, email }) => {
 };
 
 exports.getById = (uid) => {
-    return User.find({ _id: uid });
+    return User.findOne({ _id: uid });
 };
 
 exports.getByUsername = (username) => {
-    return User.find({ username });
+    return User.findOne({ username });
 };
 
 exports.doesUserExist = async (username) => {

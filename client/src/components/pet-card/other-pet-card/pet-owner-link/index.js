@@ -22,7 +22,7 @@ const PetOwnerLink = ({ creator }) => {
 
     return (
         <StyledPetOwnerLink onClick={onClick}>
-            <span className="bold-span">Owner:</span> {creator.email}
+            <span className="bold-span">Owner:</span> {creator.username}
         </StyledPetOwnerLink>
     );
 };

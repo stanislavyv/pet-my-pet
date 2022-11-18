@@ -7,10 +7,12 @@ import { useSearchParams } from 'react-router-dom';
 
 import { trackPromise } from 'react-promise-tracker';
 import { getAllPets } from '../../../../utils/petService';
+import { getUsernameById } from '../../../../utils/userService';
 
 import PetsList from '../../../pets-list';
 import PagesList from '../../../pages-list';
 const BlankPage = lazy(() => import('../../../shared/blank-page'));
+
 
 const DashboardPetsList = () => {
     const [pets, setPets] = useState([]);
@@ -19,6 +21,8 @@ const DashboardPetsList = () => {
     const { notification } = useNotification();
     const [{ currentPage, totalItemsCount }, dispatchPageData] = usePageData();
     const [searchParams] = useSearchParams();
+
+    const [ownerUsername, setOwnerUsername] = useState('');
 
     // use notification.message so useEffect() doesn't get called twice on notification state change
     useEffect(() => {
@@ -29,6 +33,11 @@ const DashboardPetsList = () => {
                 setPets(result);
                 dispatchPageData({ type: 'setCount', payload: count });
                 window.scrollTo(0, 0);
+
+                const ownerId = searchParams.get('ownerid');
+                if (ownerId) {
+                    getUsernameById(ownerId).then((un) => setOwnerUsername(un));
+                }
             })
             .catch(() => {
                 setLoading(false);
@@ -39,7 +48,7 @@ const DashboardPetsList = () => {
 
     return (
         <>
-            {searchParams.get('ownerid') ? <h1>{email}'s pets</h1> : ''}
+            {searchParams.get('ownerid') ? <h1>{ownerUsername}'s pets</h1> : ''}
             {pets.length > 0 ? (
                 <>
                     <PetsList

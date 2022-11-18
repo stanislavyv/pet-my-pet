@@ -67,12 +67,12 @@ const StyledNavbarSecondBarWrapper = styled.div`
 `;
 
 const NavbarSecondBarWrapper = () => {
-    const { isLoggedIn, email } = useAuth();
+    const { isLoggedIn } = useAuth();
 
     return (
         <StyledNavbarSecondBarWrapper>
             {isLoggedIn ? (
-                <NavbarSecondBarLogged email={email} />
+                <NavbarSecondBarLogged />
             ) : (
                 <NavbarSecondBarAnon />
             )}
