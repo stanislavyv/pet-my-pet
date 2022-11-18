@@ -6,6 +6,9 @@ import {
     signOut,
 } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { post } from './requester';
+
+const collection = '/users';
 
 const auth = getAuth();
 
@@ -17,18 +20,31 @@ const setUserId = (id) => {
     localStorage.setItem('uid', id);
 };
 
-export const createUser = async (email, password) => {
+export const createUser = async (email, username, password) => {
     try {
-        const result = await createUserWithEmailAndPassword(
+        const firebaseResult = await createUserWithEmailAndPassword(
             auth,
             email,
             password
         );
 
-        setUserId(result.user.uid);
-        return result;
+        const mongoRes = await post(
+            {
+                id: firebaseResult.user.uid,
+                username,
+                email,
+            },
+            collection
+        );
+
+        if (mongoRes.message) {
+            return mongoRes;
+        }
+        
+        setUserId(firebaseResult.user.uid);
+        return firebaseResult;
     } catch (e) {
-        console.log(e);
+        console.log(`Couldn't add user - ${e.message}`);
     }
 };
 

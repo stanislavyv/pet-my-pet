@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, useMemo } from 'react';
 
-import { useFirebaseAuthState, onStateChange } from '../../utils/authService';
+import { useFirebaseAuthState, onStateChange } from '../../utils/userService';
 
 import Loading from '../../components/loading';
 

@@ -1,12 +1,8 @@
 import config from '../config';
-import { getAccessToken } from './authService';
+import { getAccessToken } from './userService';
 
 const makeRequest = async function (method, endpoint, body) {
-    let dataBaseUrl = `${config.SERVER_CONNECTION}/pets`;
-
-    if (!endpoint.startsWith('?')) {
-        dataBaseUrl += '/';
-    }
+    let dataBaseUrl = `${config.SERVER_CONNECTION}`;
 
     const request = {
         method,

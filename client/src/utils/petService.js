@@ -1,10 +1,12 @@
 import * as requester from './requester';
 
+const collection = '/pets';
+
 export const getAllPets = function () {
     const query = window.location.search;
 
     try {
-        return requester.get(query);
+        return requester.get(`${collection}${query}`);
     } catch (e) {
         console.log(e.message);
     }
@@ -12,7 +14,7 @@ export const getAllPets = function () {
 
 export const getPetById = async function (id = '') {
     try {
-        const pet = await requester.get(`/${id}`);
+        const pet = await requester.get(`${collection}/${id}`);
         return pet;
     } catch (e) {
         console.log(e.message);
@@ -21,7 +23,7 @@ export const getPetById = async function (id = '') {
 
 export const createPet = function (petObject) {
     try {
-        const res = requester.post(petObject);
+        const res = requester.post(petObject, collection);
         return res;
     } catch (e) {
         console.log(`Couldn't add pet - ${e.message}`);
@@ -30,7 +32,7 @@ export const createPet = function (petObject) {
 
 export const editPet = function (id, newDescription) {
     try {
-        const res = requester.patch(`/${id}/edit`, {
+        const res = requester.patch(`${collection}/${id}/edit`, {
             description: newDescription,
         });
         return res;
@@ -41,7 +43,7 @@ export const editPet = function (id, newDescription) {
 
 export const likePet = async function (id) {
     try {
-        return requester.patch(`${id}/like`);
+        return requester.patch(`${collection}/${id}/like`);
     } catch (e) {
         console.log(`Couldn't like pet - ${e.message}`);
     }
@@ -49,7 +51,7 @@ export const likePet = async function (id) {
 
 export const deletePet = (id) => {
     try {
-        const res = requester.remove(id);
+        const res = requester.remove(`${collection}/${id}`);
         return res;
     } catch (e) {
         console.log(e);

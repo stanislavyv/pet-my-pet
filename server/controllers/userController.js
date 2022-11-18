@@ -7,6 +7,7 @@ const {
 } = require('../services/userService');
 
 const { validateUser } = require('../middlewares/validator');
+const { validationResult } = require('express-validator');
 
 // GET BY id
 routes.get('/:id', (req, res) => {
@@ -25,7 +26,7 @@ routes.get('/:id', (req, res) => {
 routes.post('/', validateUser, async (req, res) => {
     const data = req.body;
 
-    const userExists = await doesUserExist(data.name);
+    const userExists = await doesUserExist(data.username);
 
     if (userExists) {
         return res.json({

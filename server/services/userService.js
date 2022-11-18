@@ -1,12 +1,12 @@
 const User = require('../models/User');
 
-exports.createUser = (data) => {
-    const user = new User(data);
+exports.createUser = ({ id, username, email }) => {
+    const user = new User({ _id: id, username, email });
     return user.save();
 };
 
 exports.getById = (uid) => {
-    return User.findById(uid);
+    return User.find({ _id: uid });
 };
 
 exports.getByUsername = (username) => {

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useNotification } from '../../../../contexts/NotificationContext';
 
-import { createUser } from '../../../../utils/authService';
+import { createUser } from '../../../../utils/userService';
 
 import AuthForm from '..';
 
@@ -26,13 +26,18 @@ const RegisterForm = () => {
             email.toLowerCase().trim(),
             username.toLowerCase().trim(),
             password
-        ).then((res) => {
-            if (res) {
+        )
+            .then((res) => {
+                if (res.message) {
+                    notifyError(res.message);
+                    return;
+                }
+
                 navigate('/');
-            } else {
+            })
+            .catch((e) => {
                 notifyError('Email already in use!');
-            }
-        });
+            });
     };
 
     return (

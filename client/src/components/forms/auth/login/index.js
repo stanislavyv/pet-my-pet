@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useNotification } from '../../../../contexts/NotificationContext';
 
-import { signIn } from '../../../../utils/authService';
+import { signIn } from '../../../../utils/userService';
 
 import AuthForm from '..';
 

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { logout } from '../../../utils/authService';
+import { logout } from '../../../utils/userService';
 
 import NavbarButton from '../../navbar/navbar-header/navbar-link/navbar-btn';
 
