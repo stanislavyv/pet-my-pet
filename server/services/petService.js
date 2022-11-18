@@ -11,7 +11,7 @@ exports.getAll = async (inputQuery) => {
     }
 
     if (category) {
-        query = { ...query, category };
+        query = { ...query, category: decodeURIComponent(category) };
     }
 
     const offset = page ? (page - 1) * PAGE_SIZE : 0;

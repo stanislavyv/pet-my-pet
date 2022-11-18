@@ -51,7 +51,7 @@ const Categories = () => {
     }
 
     function onCategoryClick(category) {
-        setSearchParams({ category: category });
+        setSearchParams({ category: encodeURIComponent(category) });
     }
 
     return (
