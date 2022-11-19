@@ -24,7 +24,7 @@ const StyledCategories = styled.nav`
     }
 
     @media ${device.laptop} {
-        margin: 0.4rem 0;
+        margin: 1.2rem 0 0.4rem 0;
         flex-direction: row;
 
         & button {
