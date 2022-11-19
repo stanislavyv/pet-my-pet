@@ -26,8 +26,8 @@ const DashboardPetsList = () => {
     // use notification.message so useEffect() doesn't get called twice on notification state change
     useEffect(() => {
         setLoading(true);
-        trackPromise(getAllPets())
-            .then(({ count, result }) => {
+        try {
+            trackPromise(getAllPets()).then(({ count, result }) => {
                 setLoading(false);
                 setPets(result);
                 dispatchPageData({ type: 'setCount', payload: count });
@@ -42,10 +42,11 @@ const DashboardPetsList = () => {
                 if (ownerId) {
                     getUsernameById(ownerId).then((un) => setOwnerUsername(un));
                 }
-            })
-            .catch(() => {
-                setLoading(false);
             });
+        } catch (e) {
+            console.log(e);
+            setLoading(false);
+        }
 
         return () => {};
     }, [notification.message, searchParams]);
