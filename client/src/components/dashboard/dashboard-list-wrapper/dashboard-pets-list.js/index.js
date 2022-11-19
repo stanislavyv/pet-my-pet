@@ -71,11 +71,9 @@ const DashboardPetsList = () => {
                 <>
                     {!loading &&
                         (searchParams.has('ownerid') ? (
-                            <BlankPage>
-                                You haven't added any pets yet...
-                            </BlankPage>
+                            <BlankPage header="You haven't added any pets yet..." />
                         ) : (
-                            <BlankPage>Nothing to see here...</BlankPage>
+                            <BlankPage header="Nothing to see here..." />
                         ))}
                 </>
             )}

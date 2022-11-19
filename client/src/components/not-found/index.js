@@ -1,7 +1,7 @@
 import BlankPage from '../shared/blank-page';
 
 const NotFound = () => {
-    return <BlankPage>404 Not Found</BlankPage>;
+    return <BlankPage header="404 Not Found" />;
 };
 
 export default NotFound;

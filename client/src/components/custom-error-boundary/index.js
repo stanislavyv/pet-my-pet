@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import styled from 'styled-components';
+import BlankPage from '../shared/blank-page';
 
 const StyledErrorBoundary = styled.section`
     width: 18.75rem;
@@ -30,12 +31,13 @@ export default class CustomErrorBoundary extends Component {
         if (this.state.hasError) {
             return (
                 <StyledErrorBoundary>
-                    <h2>Error!</h2>
-                    <p>
-                        There was a problem with your request, please try again
-                        later.
-                        {this.state.message}
-                    </p>
+                    <BlankPage header="Error!">
+                        <p>
+                            There was a problem with your request, please try
+                            again later.
+                            {this.state.message}
+                        </p>
+                    </BlankPage>
                 </StyledErrorBoundary>
             );
         }
