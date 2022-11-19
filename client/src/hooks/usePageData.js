@@ -9,6 +9,9 @@ const reducer = (state, { type, payload }) => {
             return { ...state, currentPage: state.currentPage - 1 };
         case 'setPage':
             return { ...state, currentPage: payload };
+        case 'reset': {
+            return { ...state, currentPage: 1 };
+        }
         case 'setCount':
             return { ...state, totalItemsCount: payload };
         default:

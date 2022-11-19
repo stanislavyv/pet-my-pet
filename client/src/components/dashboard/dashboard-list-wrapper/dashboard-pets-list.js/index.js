@@ -31,6 +31,11 @@ const DashboardPetsList = () => {
                 setLoading(false);
                 setPets(result);
                 dispatchPageData({ type: 'setCount', payload: count });
+
+                if (!searchParams.get('page')) {
+                    dispatchPageData({ type: 'reset' });
+                }
+
                 window.scrollTo(0, 0);
 
                 const ownerId = searchParams.get('ownerid');

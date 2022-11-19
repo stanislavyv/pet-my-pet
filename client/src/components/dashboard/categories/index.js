@@ -51,9 +51,10 @@ const Categories = () => {
     }
 
     function onCategoryClick(category) {
-        setSearchParams({
-            ...searchParams,
-            category: encodeURIComponent(category),
+        setSearchParams((state) => {
+            state.set('category', category);
+            state.delete('page');
+            return state;
         });
     }
 
