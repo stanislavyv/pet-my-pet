@@ -21,14 +21,14 @@ function App() {
             <GlobalStyles />
             <AuthProvider>
                 <Header />
-                <CustomErrorBoundary>
-                    <NotificationProvider>
-                        <Content>
+                <NotificationProvider>
+                    <Content>
+                        <CustomErrorBoundary>
                             <AppRoutes />
                             <Notification />
-                        </Content>
-                    </NotificationProvider>
-                </CustomErrorBoundary>
+                        </CustomErrorBoundary>
+                    </Content>
+                </NotificationProvider>
             </AuthProvider>
             <Footer />
         </>
