@@ -16,7 +16,7 @@ const PetOwnerLink = ({ creator }) => {
     const navigate = useNavigate();
 
     const onClick = useCallback(() => {
-        const search = `?ownerid=${encodeURIComponent(creator.id)}`;
+        const search = `?ownerid=${encodeURIComponent(creator._id)}`;
         navigate({ pathname: '/pets', search });
     }, [creator]);
 

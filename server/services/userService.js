@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const admin = require('../config/firebase');
+const mongoose = require('mongoose');
 
 exports.createUser = async ({ username, email, password }) => {
     const user = new User({ username, email });
@@ -22,7 +23,7 @@ exports.createUser = async ({ username, email, password }) => {
 };
 
 exports.getById = (uid) => {
-    // return User.findOne({ _id: uid });
+    return User.findById(uid);
 };
 
 exports.getByUsername = (username) => {

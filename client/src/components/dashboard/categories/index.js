@@ -35,7 +35,7 @@ const StyledCategories = styled.nav`
 
 const Categories = () => {
     const [isExpanded, setIsExpanded] = useState(false);
-    const [, setSearchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const links = [
         { name: 'All', search: '' },
@@ -51,7 +51,10 @@ const Categories = () => {
     }
 
     function onCategoryClick(category) {
-        setSearchParams({ category: encodeURIComponent(category) });
+        setSearchParams({
+            ...searchParams,
+            category: encodeURIComponent(category),
+        });
     }
 
     return (

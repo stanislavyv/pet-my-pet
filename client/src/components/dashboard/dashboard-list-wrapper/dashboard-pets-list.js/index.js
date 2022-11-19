@@ -13,7 +13,6 @@ import PetsList from '../../../pets-list';
 import PagesList from '../../../pages-list';
 const BlankPage = lazy(() => import('../../../shared/blank-page'));
 
-
 const DashboardPetsList = () => {
     const [pets, setPets] = useState([]);
     const [loading, setLoading] = useState(true);
