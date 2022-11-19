@@ -36,7 +36,7 @@ const RegisterForm = () => {
                 navigate('/');
             })
             .catch((e) => {
-                notifyError('Email already in use!');
+                notifyError(e.message);
             });
     };
 

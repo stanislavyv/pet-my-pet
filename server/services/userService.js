@@ -1,12 +1,28 @@
 const User = require('../models/User');
+const admin = require('../config/firebase');
 
-exports.createUser = ({ id, username, email }) => {
-    const user = new User({ _id: id, username, email });
-    return user.save();
+exports.createUser = async ({ username, email, password }) => {
+    const user = new User({ username, email });
+    const uid = user._id.toHexString();
+
+    try {
+        await admin.auth().createUser({
+            uid,
+            email,
+            password,
+        });
+    } catch (e) {
+        throw { message: e.errorInfo.message };
+    }
+
+    const token = admin.auth().createCustomToken(uid);
+
+    user.save();
+    return token;
 };
 
 exports.getById = (uid) => {
-    return User.findOne({ _id: uid });
+    // return User.findOne({ _id: uid });
 };
 
 exports.getByUsername = (username) => {

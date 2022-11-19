@@ -1,9 +1,9 @@
 import {
     getAuth,
     onAuthStateChanged,
-    createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
+    signInWithCustomToken,
 } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { get, post } from './requester';
@@ -22,27 +22,23 @@ const setUserId = (id) => {
 
 export const createUser = async (email, username, password) => {
     try {
-        const firebaseResult = await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
-
-        const mongoRes = await post(
+        const result = await post(
             {
-                id: firebaseResult.user.uid,
                 username,
                 email,
+                password,
             },
             collection
         );
 
-        if (mongoRes.message) {
-            return mongoRes;
+        if (result.message) {
+            return result;
         }
 
-        setUserId(firebaseResult.user.uid);
-        return firebaseResult;
+        const signInResult = await signInWithCustomToken(auth, result);
+
+        setUserId(signInResult.user.uid);
+        return result;
     } catch (e) {
         console.log(`Couldn't add user - ${e.message}`);
     }

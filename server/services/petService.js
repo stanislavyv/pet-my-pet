@@ -1,4 +1,5 @@
 const Pet = require('../models/Pet');
+const mongoose = require('mongoose');
 
 const PAGE_SIZE = 8;
 
@@ -7,7 +8,8 @@ exports.getAll = async (inputQuery) => {
     let query = {};
 
     if (ownerid) {
-        query = { ...query, 'creator.id': decodeURIComponent(ownerid) };
+        // mongoose.Types.ObjectId()??
+        query = { ...query, creator: decodeURIComponent(ownerid) };
     }
 
     if (category) {
@@ -17,16 +19,24 @@ exports.getAll = async (inputQuery) => {
     const offset = page ? (page - 1) * PAGE_SIZE : 0;
 
     const count = await Pet.countDocuments(query);
-    const result = await Pet.find(query).skip(offset).limit(PAGE_SIZE).lean();
+    const result = await Pet.find(query)
+        .skip(offset)
+        .limit(PAGE_SIZE)
+        .populate('creator');
 
     return { count, result };
 };
 
 exports.getById = (id) => {
-    return Pet.findById(id);
+    return Pet.findById(id).populate('creator');
 };
 
-exports.createPet = (data) => {
+exports.createPet = (data, uid) => {
+    const creator = mongoose.Types.ObjectId(uid);
+    data.creator = creator;
+    data.likes = 0;
+    data.peopleLiked = [];
+
     const pet = new Pet(data);
     return pet.save();
 };

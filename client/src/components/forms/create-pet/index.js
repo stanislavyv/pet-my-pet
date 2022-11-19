@@ -93,12 +93,6 @@ const CreatePet = () => {
             description: e.target.description.value,
             imageURL: e.target.imageURL.value,
             category: e.target.category.value.toLowerCase(),
-            likes: 0,
-            creator: {
-                email,
-                id: localStorage.getItem('uid'),
-            },
-            peopleLiked: [],
         };
 
         createPet(petObject).then((res) => {

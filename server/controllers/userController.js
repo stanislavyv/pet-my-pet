@@ -40,9 +40,13 @@ routes.post('/', validateUser, async (req, res) => {
         return res.json({ message: errors.array()[0].msg });
     }
 
-    createUser(data).then((result) => {
-        return res.status(201).json(result);
-    });
+    createUser(data)
+        .then((result) => {
+            return res.status(201).json(result);
+        })
+        .catch((e) => {
+            res.json(e);
+        });
 });
 
 module.exports = routes;

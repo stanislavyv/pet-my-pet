@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const User = require('./User');
 
 const petSchema = new mongoose.Schema({
     name: {
@@ -22,14 +23,8 @@ const petSchema = new mongoose.Schema({
         requied: true,
     },
     creator: {
-        id: {
-            type: String,
-            required: true,
-        },
-        username: {
-            type: String,
-            required: true,
-        },
+        type: mongoose.Types.ObjectId,
+        ref: User,
     },
     peopleLiked: [
         {

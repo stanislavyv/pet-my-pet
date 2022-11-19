@@ -61,7 +61,7 @@ routes.post('/', authenticate(), validatePet, async (req, res) => {
         return res.json({ message: errors.array()[0].msg });
     }
 
-    createPet(data).then((result) => {
+    createPet(data, req.uid).then((result) => {
         return res.status(201).json(result);
     });
 });
