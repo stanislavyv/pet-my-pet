@@ -65,12 +65,12 @@ const StyledSearchBar = styled.div`
 
 const SearchBar = () => {
     const [search, setSearch] = useState('');
-    const ref = useRef('');
+    const inputRef = useRef('');
     const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
         if (!searchParams.get('search')) {
-            ref.current.value = '';
+            inputRef.current.value = '';
         }
     }, [searchParams]);
 
@@ -102,7 +102,7 @@ const SearchBar = () => {
                 name="search-bar"
                 placeholder="Search..."
                 onInput={onSearchInput}
-                ref={ref}
+                ref={inputRef}
             />
         </StyledSearchBar>
     );

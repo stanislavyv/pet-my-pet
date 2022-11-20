@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const PAGE_SIZE = 8;
 
 exports.getAll = async (inputQuery) => {
-    const { ownerid, category, page } = inputQuery;
+    const { ownerid, category, page, search } = inputQuery;
     let query = {};
 
     if (ownerid) {
@@ -14,6 +14,13 @@ exports.getAll = async (inputQuery) => {
 
     if (category) {
         query = { ...query, category: decodeURIComponent(category) };
+    }
+
+    if (search) {
+        query = {
+            ...query,
+            name: { $regex: decodeURIComponent(search), $options: 'i' },
+        };
     }
 
     const offset = page ? (page - 1) * PAGE_SIZE : 0;
