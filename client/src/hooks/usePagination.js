@@ -5,7 +5,7 @@ const SIBLING_COUNT = 1;
 
 export const DOTS = '...';
 
-export const usePagination = ({ totalCount, currentPage }) => {
+export const usePagination = ({ totalItemsCount, currentPage }) => {
     const range = (start, end) => {
         let length = end - start + 1;
         /*
@@ -16,7 +16,7 @@ export const usePagination = ({ totalCount, currentPage }) => {
     };
 
     const paginationRange = useMemo(() => {
-        const totalPageCount = Math.ceil(totalCount / PAGE_SIZE);
+        const totalPageCount = Math.ceil(totalItemsCount / PAGE_SIZE);
 
         // Pages count is determined as SIBLING_COUNT + firstPage + lastPage + currentPage + 2*DOTS
         const totalPageNumbers = SIBLING_COUNT + 5;
@@ -77,7 +77,7 @@ export const usePagination = ({ totalCount, currentPage }) => {
             let middleRange = range(leftSiblingIndex, rightSiblingIndex);
             return [firstPageIndex, DOTS, ...middleRange, DOTS, lastPageIndex];
         }
-    }, [totalCount, currentPage]);
+    }, [totalItemsCount, currentPage]);
 
     return paginationRange;
 };

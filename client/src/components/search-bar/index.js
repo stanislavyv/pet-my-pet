@@ -96,7 +96,7 @@ const SearchBar = () => {
 
     return (
         <StyledSearchBar>
-            <i class="fa fa-search" aria-hidden="true"></i>
+            <i className="fa fa-search" aria-hidden="true"></i>
             <input
                 type="search"
                 name="search-bar"

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { device } from '../../config/css';
+import { useAuth } from '../../contexts/AuthContext';
 
 import MyPetCard from '../pet-card/my-pet-card';
 import OtherPetCard from '../pet-card/other-pet-card';
@@ -27,7 +28,9 @@ const StyledPetsList = styled.ul`
     }
 `;
 
-const PetsList = ({ pets, isLoggedIn, email }) => {
+const PetsList = ({ pets }) => {
+    const { isLoggedIn, email } = useAuth();
+
     return (
         <StyledPetsList>
             {pets.map((pet) => {

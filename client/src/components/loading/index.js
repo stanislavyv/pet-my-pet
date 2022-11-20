@@ -20,12 +20,7 @@ const StyledLoading = styled.div`
 
     /* 52px is footer, which may be absent if the element is loaded at 
        the same time as DashboardPetsList*/
-    min-height: ${(props) =>
-        props.type === 'auth'
-            ? '100vh'
-            : props.type === 'petsList'
-            ? 'calc(var(--content-height, 100vh - 52px) + 52px)'
-            : 'inherit'};
+    min-height: ${(props) => (props.type === 'auth' ? '100vh' : 'inherit')};
 `;
 
 const Loading = ({ type }) => {

@@ -1,6 +1,8 @@
-import React from 'react';
 import styled from 'styled-components';
+import React, { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
+import usePageData from '../../hooks/usePageData';
 import { usePagination, DOTS } from '../../hooks/usePagination';
 
 import PageItem from './page-item';
@@ -13,11 +15,21 @@ const StyledPagesList = styled.ul`
     margin-bottom: 1rem;
 `;
 
-const PagesList = ({ totalCount, currentPage, dispatchCallback }) => {
+const PagesList = ({ count }) => {
+    const [{ currentPage, totalItemsCount }, dispatchPageData] = usePageData();
+    const [searchParams] = useSearchParams();
     const paginationRange = usePagination({
         currentPage,
-        totalCount,
+        totalItemsCount,
     });
+
+    useEffect(() => {
+        dispatchPageData({ type: 'setCount', payload: count });
+
+        if (!searchParams.get('page')) {
+            dispatchPageData({ type: 'reset' });
+        }
+    }, [count]);
 
     // If there are less than 2 times in pagination range we shall not render the component
     if (currentPage === 0 || paginationRange.length < 2) {
@@ -25,15 +37,15 @@ const PagesList = ({ totalCount, currentPage, dispatchCallback }) => {
     }
 
     const onNext = () => {
-        dispatchCallback({ type: 'increment' });
+        dispatchPageData({ type: 'increment' });
     };
 
     const onPrevious = () => {
-        dispatchCallback({ type: 'decrement' });
+        dispatchPageData({ type: 'decrement' });
     };
 
     const onPageClick = (pageNumber) => {
-        dispatchCallback({ type: 'setPage', payload: pageNumber });
+        dispatchPageData({ type: 'setPage', payload: pageNumber });
     };
 
     let lastPage = paginationRange[paginationRange.length - 1];

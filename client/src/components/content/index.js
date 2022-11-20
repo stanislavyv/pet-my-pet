@@ -1,8 +1,5 @@
-import { usePromiseTracker } from 'react-promise-tracker';
 import styled from 'styled-components';
 import { device } from '../../config/css';
-
-import Loading from '../loading';
 
 const StyledContent = styled.div`
     overflow: hidden;
@@ -24,14 +21,9 @@ const StyledContent = styled.div`
 `;
 
 const Content = ({ children }) => {
-    const { promiseInProgress } = usePromiseTracker({ delay: 500 });
-
     return (
         <>
-            <StyledContent>
-                {promiseInProgress && <Loading type="petsList" />}
-                {children}
-            </StyledContent>
+            <StyledContent>{children}</StyledContent>
         </>
     );
 };
