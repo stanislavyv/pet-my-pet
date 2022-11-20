@@ -3,7 +3,10 @@ import { device } from '../../config/css';
 
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useCallback } from 'react';
+import { useRef } from 'react';
 
+// Loading only for pet list?
 const StyledSearchBar = styled.div`
     position: relative;
 
@@ -62,25 +65,34 @@ const StyledSearchBar = styled.div`
 
 const SearchBar = () => {
     const [search, setSearch] = useState('');
-    const [, setSearchParams] = useSearchParams();
+    const ref = useRef('');
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    useEffect(() => {
+        if (!searchParams.get('search')) {
+            ref.current.value = '';
+        }
+    }, [searchParams]);
 
     useEffect(() => {
         if (search) {
             const intervalId = setInterval(() => {
                 setSearchParams((state) => {
-                    state.set('search', search);
+                    state.set('search', encodeURIComponent(search));
+                    state.delete('page');
                     return state;
                 });
+                setSearch('');
             }, 800);
 
             return () => clearInterval(intervalId);
         }
     }, [search]);
 
-    const onSearchInput = (e) => {
+    const onSearchInput = useCallback((e) => {
         e.preventDefault();
         setSearch(e.target.value);
-    };
+    }, []);
 
     return (
         <StyledSearchBar>
@@ -90,6 +102,7 @@ const SearchBar = () => {
                 name="search-bar"
                 placeholder="Search..."
                 onInput={onSearchInput}
+                ref={ref}
             />
         </StyledSearchBar>
     );

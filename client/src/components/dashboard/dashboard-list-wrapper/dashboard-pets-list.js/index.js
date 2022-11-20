@@ -16,7 +16,7 @@ const BlankPage = lazy(() => import('../../../shared/blank-page'));
 const DashboardPetsList = () => {
     const [pets, setPets] = useState([]);
     const [loading, setLoading] = useState(true);
-    const { email, isLoggedIn } = useAuth();
+    const { email, isLoggedIn, userId } = useAuth();
     const { notification } = useNotification();
     const [{ currentPage, totalItemsCount }, dispatchPageData] = usePageData();
     const [searchParams] = useSearchParams();
@@ -71,7 +71,12 @@ const DashboardPetsList = () => {
                 <>
                     {!loading &&
                         (searchParams.has('ownerid') ? (
-                            <BlankPage header="You haven't added any pets yet..." />
+                            decodeURIComponent(searchParams.get('ownerid')) ===
+                            userId ? (
+                                <BlankPage header="You haven't added any pets yet..." />
+                            ) : (
+                                <BlankPage header="This user doesn't have any pets yet..." />
+                            )
                         ) : (
                             <BlankPage header="Nothing to see here..." />
                         ))}

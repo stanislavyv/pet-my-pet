@@ -9,7 +9,7 @@ import MyPetsButton from '../../../buttons/my-pets-button';
 import HamburgerMenu from '../../hamburger-menu';
 import NavbarFirstBarWrapper from './navbar-first-bar-wrapper';
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 const StyledNavbarFirstBar = styled.ul`
     @media ${device.mobileS} {
@@ -51,6 +51,7 @@ const NavbarFirstBar = () => {
     const [isNavExpanded, setIsNavExpanded] = useState(false);
     const { isLoggedIn } = useAuth();
     const location = useLocation();
+    const [, setSearchParams] = useSearchParams();
 
     useEffect(() => {
         minimizeNav();
@@ -82,7 +83,12 @@ const NavbarFirstBar = () => {
             >
                 <StyledNavbarFirstBar>
                     <li>
-                        <NavbarLink to="/pets">Dashboard</NavbarLink>
+                        <NavbarLink
+                            to="/pets"
+                            onClick={() => setSearchParams()}
+                        >
+                            Dashboard
+                        </NavbarLink>
                     </li>
                     {isLoggedIn && (
                         <>

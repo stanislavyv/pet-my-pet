@@ -22,8 +22,12 @@ export const StyledNavbarLink = styled(Link)`
     }
 `;
 
-const NavbarLink = ({ to, children }) => {
-    return <StyledNavbarLink to={to}>{children}</StyledNavbarLink>;
+const NavbarLink = ({ to, children, onClick }) => {
+    return (
+        <StyledNavbarLink to={to} onClick={onClick}>
+            {children}
+        </StyledNavbarLink>
+    );
 };
 
 export default NavbarLink;

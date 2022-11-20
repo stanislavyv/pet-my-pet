@@ -54,6 +54,7 @@ const Categories = () => {
         setSearchParams((state) => {
             state.set('category', category);
             state.delete('page');
+            state.delete('search');
             return state;
         });
     }
