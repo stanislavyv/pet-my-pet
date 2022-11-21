@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { device } from '../../config/css';
+import { device } from '../../../config/css';
 
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -32,7 +32,6 @@ const StyledSearchBar = styled.div`
     }
 
     @media ${device.mobileS} {
-        margin: 0 0 0.2rem 0;
         max-width: 10rem;
 
         & input {
@@ -47,7 +46,6 @@ const StyledSearchBar = styled.div`
     }
 
     @media ${device.laptop} {
-        margin: 0.8rem 0 0.2rem 0;
         max-width: 16rem;
 
         & input {
@@ -89,7 +87,7 @@ const SearchBar = () => {
         }
     }, [search]);
 
-    const onSearchInput = useCallback((e) => {
+    const onSearchInput = (e) => {
         e.preventDefault();
         setSearch(e.target.value);
 
@@ -99,7 +97,7 @@ const SearchBar = () => {
                 return state;
             });
         }
-    }, []);
+    };
 
     return (
         <StyledSearchBar>

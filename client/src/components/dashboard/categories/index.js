@@ -58,6 +58,8 @@ const Categories = () => {
                 state.set('category', category);
             }
 
+            // remove all params, except for ownerid
+            state.delete('sort');
             state.delete('page');
             state.delete('search');
             return state;
