@@ -52,7 +52,12 @@ const Categories = () => {
 
     function onCategoryClick(category) {
         setSearchParams((state) => {
-            state.set('category', category);
+            if (category === '') {
+                state.delete('category');
+            } else {
+                state.set('category', category);
+            }
+
             state.delete('page');
             state.delete('search');
             return state;

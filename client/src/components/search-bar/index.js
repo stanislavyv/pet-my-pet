@@ -92,6 +92,13 @@ const SearchBar = () => {
     const onSearchInput = useCallback((e) => {
         e.preventDefault();
         setSearch(e.target.value);
+
+        if (e.target.value === '') {
+            setSearchParams((state) => {
+                state.delete('search');
+                return state;
+            });
+        }
     }, []);
 
     return (
