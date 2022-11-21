@@ -39,9 +39,9 @@ const DashboardPetsList = () => {
                     }
 
                     window.scrollTo(0, 0);
-                    return () => Promise.reject(promise);
                 }
             );
+            return () => Promise.reject(promise);
         } catch (e) {
             console.log(e);
         }

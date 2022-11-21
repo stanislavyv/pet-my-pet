@@ -3,12 +3,17 @@ const mongoose = require('mongoose');
 
 const PAGE_SIZE = 8;
 
+const SORT_OPTIONS = {
+    alphabetical: { name: 1 },
+    'likes-asc': { likes: 1 },
+    'likes-desc': { likes: -1 },
+};
+
 exports.getAll = async (inputQuery) => {
-    const { ownerid, category, page, search } = inputQuery;
+    const { ownerid, category, page, search, sort } = inputQuery;
     let query = {};
 
     if (ownerid) {
-        // mongoose.Types.ObjectId()??
         query = { ...query, creator: decodeURIComponent(ownerid) };
     }
 
@@ -23,10 +28,15 @@ exports.getAll = async (inputQuery) => {
         };
     }
 
+    let sortObj = SORT_OPTIONS['alphabetical'];
+    if (sort) {
+        sortObj = SORT_OPTIONS[sort];
+    }
+
     const offset = page ? (page - 1) * PAGE_SIZE : 0;
 
     const count = await Pet.countDocuments(query);
-    const result = await Pet.find(query)
+    const result = await Pet.find(query, null, { sort: sortObj })
         .skip(offset)
         .limit(PAGE_SIZE)
         .populate('creator');

@@ -41,6 +41,7 @@ const SortBy = () => {
         if (selectedValue) {
             setSearchParams((state) => {
                 state.set('sort', encodeURIComponent(selectedValue));
+                state.delete('page');
                 return state;
             });
         }
