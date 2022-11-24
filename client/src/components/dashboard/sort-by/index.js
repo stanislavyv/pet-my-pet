@@ -34,7 +34,7 @@ const StyledSortBy = styled.section`
 `;
 
 const SortBy = () => {
-    const [selectedValue, setSelectedValue] = useState('');
+    const [selectedValue, setSelectedValue] = useState('default');
     const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
@@ -49,7 +49,7 @@ const SortBy = () => {
 
     useEffect(() => {
         if (!searchParams.has('sort')) {
-            setSelectedValue('');
+            setSelectedValue('default');
         }
     }, [searchParams]);
 
@@ -75,16 +75,15 @@ const SortBy = () => {
 
     return (
         <StyledSortBy>
-            <label for="select">Sort by </label>
-            <select name="select" onChange={handleChange}>
-                <option hidden selected={selectedValue === ''}>
+            <label htmlFor="select">Sort by </label>
+            <select name="select" onChange={handleChange} value={selectedValue}>
+                <option hidden value="default">
                     A-Z
                 </option>
                 {options.map((obj, key) => {
                     return (
                         <option
                             key={key}
-                            selected={selectedValue === obj.value}
                             value={obj.value}
                             dangerouslySetInnerHTML={{ __html: obj.text }}
                         ></option>

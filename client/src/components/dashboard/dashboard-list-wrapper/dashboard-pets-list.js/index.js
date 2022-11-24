@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy } from 'react';
+import { useState, useEffect, useRef, lazy } from 'react';
 
 import { useNotification } from '../../../../contexts/NotificationContext';
 import usePageData from '../../../../hooks/usePageData';
@@ -25,11 +25,14 @@ const DashboardPetsList = () => {
     const [searchParams] = useSearchParams();
     const { promiseInProgress } = usePromiseTracker({ delay: 500 });
 
+    const isMounted = useRef(false);
+
     // use notification.message so useEffect() doesn't get called twice on notification state change
     useEffect(() => {
         try {
-            const promise = trackPromise(getAllPets()).then(
-                ({ count, result }) => {
+            isMounted.current = true;
+            if (isMounted) {
+                trackPromise(getAllPets()).then(({ count, result }) => {
                     setPets(result);
 
                     dispatchPageData({ type: 'setCount', payload: count });
@@ -39,9 +42,10 @@ const DashboardPetsList = () => {
                     }
 
                     window.scrollTo(0, 0);
-                }
-            );
-            return () => Promise.reject(promise);
+                });
+            }
+
+            return () => (isMounted.current = false);
         } catch (e) {
             console.log(e);
         }
