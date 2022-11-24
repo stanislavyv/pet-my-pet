@@ -31,7 +31,7 @@ const DashboardPetsList = () => {
     useEffect(() => {
         try {
             isMounted.current = true;
-            if (isMounted) {
+            if (isMounted.current) {
                 trackPromise(getAllPets()).then(({ count, result }) => {
                     setPets(result);
 

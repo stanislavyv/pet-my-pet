@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../../config/css';
 
 import { useNotification } from '../../../contexts/NotificationContext';
 import { deletePet } from '../../../utils/petService';
@@ -6,7 +7,6 @@ import { deletePet } from '../../../utils/petService';
 const StyledWrapper = styled.div`
     display: flex;
     width: 100%;
-    height: 2.5rem;
 
     button {
         background-color: cadetblue;
@@ -26,6 +26,14 @@ const StyledWrapper = styled.div`
         background: rgb(248, 215, 107);
         color: rgb(0, 0, 0);
         font-weight: bold;
+    }
+
+    @media ${device.mobileS} {
+        height: 2.3rem;
+    }
+
+    @media (min-width: 550px) {
+        height: 2.5rem;
     }
 `;
 

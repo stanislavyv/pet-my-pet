@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { device } from '../../config/css';
+
 import ButtonWrapper from './button-wrapper';
 import TextWrapper from './text-wrapper';
 
@@ -8,11 +10,8 @@ const StyledPopUp = styled.section`
     border: 1px solid #00000026;
 
     font-weight: bold;
-    min-width: 12.5rem;
-    max-width: 26.6rem;
     width: 100%;
 
-    height: 14.3rem;
     position: fixed;
     left: 50%;
     top: 50%;
@@ -23,6 +22,16 @@ const StyledPopUp = styled.section`
     border-radius: 7px;
     justify-content: flex-start;
     align-items: center;
+
+    @media ${device.mobileS} {
+        max-width: 19rem;
+        min-height: 11rem;
+    }
+
+    @media (min-width: 550px) {
+        max-width: 26.6rem;
+        min-height: 14.3rem;
+    }
 `;
 
 const DeletePopUp = ({ id, setPopUp }) => {
