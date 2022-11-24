@@ -79,7 +79,7 @@ exports.editPet = (id, data) => {
 };
 
 exports.deletePet = async (id) => {
-    const pet = await Pet.findByIdAndDelete(id);
+    const pet = await Pet.findByIdAndDelete(id).exec();
     return pet;
 };
 
