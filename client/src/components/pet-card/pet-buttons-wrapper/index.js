@@ -12,8 +12,8 @@ const StyledPetInfo = styled.div`
     }
 `;
 
-const PetInfo = ({ children }) => {
+const PetButtonsWrapper = ({ children }) => {
     return <StyledPetInfo>{children}</StyledPetInfo>;
 };
 
-export default PetInfo;
+export default PetButtonsWrapper;

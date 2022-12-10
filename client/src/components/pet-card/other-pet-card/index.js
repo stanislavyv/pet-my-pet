@@ -9,7 +9,7 @@ import DetailsButton from '../../buttons/details-button';
 
 import toUpperCase from '../../../utils/misc/toUpperCase';
 import arePetsEqual from '../../../utils/misc/arePetsEqual';
-import PetInfo from '../pet-info';
+import PetButtonsWrapper from '../pet-buttons-wrapper';
 
 const OtherPetCard = React.memo((pet) => {
     const { likes, hasAlreadyLiked, toggleLike } = useLike(pet._id);
@@ -17,7 +17,7 @@ const OtherPetCard = React.memo((pet) => {
     return (
         <PetCardWrapper as="li">
             <PetCard pet={{ ...pet, category: toUpperCase(pet.category) }} />
-            <PetInfo>
+            <PetButtonsWrapper>
                 <OtherPetLoggedButton
                     id={pet._id}
                     parentCallback={toggleLike}
@@ -25,7 +25,7 @@ const OtherPetCard = React.memo((pet) => {
                 />
                 <DetailsButton id={pet._id} />
                 <i className="fas fa-heart"></i> <span>{likes}</span>
-            </PetInfo>
+            </PetButtonsWrapper>
         </PetCardWrapper>
     );
 }, arePetsEqual);

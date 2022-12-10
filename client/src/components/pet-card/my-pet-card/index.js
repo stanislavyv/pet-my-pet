@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import PetInfo from '../pet-info';
+import PetButtonsWrapper from '../pet-buttons-wrapper';
 import PetCard from '..';
 import PetCardWrapper from '../pet-card-wrapper';
 import DeleteButton from '../../buttons/delete-button';
@@ -21,10 +21,10 @@ const MyPetCard = React.memo((pet) => {
         <PetCardWrapper as="li">
             {popUp && <DeletePopUp id={pet._id} setPopUp={setPopUp} />}
             <PetCard pet={{ ...pet, category: toUpperCase(pet.category) }} />
-            <PetInfo>
+            <PetButtonsWrapper>
                 <DeleteButton onClick={onDeleteClick} id={pet._id} />
                 <EditButton id={pet._id} />
-            </PetInfo>
+            </PetButtonsWrapper>
         </PetCardWrapper>
     );
 }, arePetsEqual);
