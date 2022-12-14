@@ -1,13 +1,13 @@
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import PetLayout from '../../components/layouts/pet-layout';
+import PetLayout from '../../layouts/pet-layout';
 
 const Dashboard = lazy(() => import('../../components/dashboard'));
-const CreatePet = lazy(() => import('../../components/forms/create-pet'));
-const EditPet = lazy(() => import('../../components/pet-details/edit-pet'));
+const CreatePet = lazy(() => import('../../features/pet/forms/create-pet'));
+const EditPet = lazy(() => import('../../features/pet/forms/edit-pet'));
 const OtherPetDetails = lazy(() =>
-    import('../../components/pet-details/other-pet-details')
+    import('../../features/pet/pet-details/other-pet-details')
 );
 const AuthRoute = lazy(() => import('../../hoc/AuthRoute'));
 

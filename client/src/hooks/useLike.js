@@ -1,35 +1,45 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useSelector } from 'react-redux';
 
-import { getPetById, likePet } from '../utils/petService';
+import { selectUserState } from '../features/auth/userSlice';
+
+import { getPetById, likePet } from '../services/petService';
 
 const useLike = (petId) => {
-    const [likes, setLikes] = useState(0);
-    const [hasAlreadyLiked, setHasAlreadyLiked] = useState(false);
+    const [state, setState] = useState({
+        likes: 0,
+        hasAlreadyLiked: false,
+    });
 
-    const { email, userId } = useAuth();
+    const { userInfo } = useSelector(selectUserState);
 
     useEffect(() => {
         getPetById(petId).then((pet) => {
-            setLikes(pet.likes);
-            setHasAlreadyLiked(pet?.peopleLiked.includes(userId));
+            if (pet) {
+                setState({
+                    likes: pet.likes,
+                    hasAlreadyLiked: pet.peopleLiked.includes(userInfo._id),
+                });
+            }
         });
-    }, [petId, userId, email]);
+    }, [petId, userInfo]);
 
     const toggleLike = () => {
         likePet(petId).then((pet) => {
-            setLikes(pet.likes);
-            setHasAlreadyLiked(pet.peopleLiked.includes(userId));
+            setState({
+                likes: pet.likes,
+                hasAlreadyLiked: pet.peopleLiked.includes(userInfo._id),
+            });
         });
     };
 
     const value = useMemo(
         () => ({
-            likes,
-            hasAlreadyLiked,
+            likes: state.likes,
+            hasAlreadyLiked: state.hasAlreadyLiked,
             toggleLike,
         }),
-        [hasAlreadyLiked, likes]
+        [state]
     );
 
     return value;

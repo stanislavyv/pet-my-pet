@@ -1,14 +1,16 @@
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-import { logout } from '../../../utils/userService';
+import { logoutUser } from '../../../features/auth/userSlice';
 
-import NavbarButton from '../../navbar/navbar-header/navbar-link/navbar-btn';
+import NavbarButton from '../../shared/navbar-link/navbar-button';
 
 const LogoutButton = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const onLogoutClickHandler = () => {
-        logout();
+        dispatch(logoutUser());
         navigate('/pets');
     };
 

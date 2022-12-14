@@ -1,13 +1,15 @@
-import NavbarButton from '../../navbar/navbar-header/navbar-link/navbar-btn';
+import NavbarButton from '../../shared/navbar-link/navbar-button';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../../contexts/AuthContext';
+import { useSelector } from 'react-redux';
+
+import { selectUserState } from '../../../features/auth/userSlice';
 
 const MyPetsButton = () => {
     const navigate = useNavigate();
-    const { userId } = useAuth();
+    const { userInfo } = useSelector(selectUserState);
 
     function onClickHandler() {
-        const search = `?ownerid=${encodeURIComponent(userId)}`;
+        const search = `?ownerid=${encodeURIComponent(userInfo._id)}`;
         navigate({ pathname: '/pets', search });
     }
 

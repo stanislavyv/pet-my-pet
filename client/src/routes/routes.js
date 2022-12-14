@@ -3,8 +3,8 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import Loading from '../components/loading';
 import PetRoutes from './pet-routes';
 
-const RegisterForm = lazy(() => import('../components/forms/auth/register'));
-const LoginForm = lazy(() => import('../components/forms/auth/login'));
+const RegisterForm = lazy(() => import('../features/auth/forms/register'));
+const LoginForm = lazy(() => import('../features/auth/forms/login'));
 const NotFound = lazy(() => import('../components/not-found'));
 
 const AuthFormRoute = lazy(() => import('../hoc/AuthFormRoute'));

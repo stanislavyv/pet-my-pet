@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import toUpperCase from '../../../../utils/misc/toUpperCase';
+import toUpperCase from '../../../../utils/toUpperCase';
 import AuthFieldInputWrapper from './auth-field-input-wrapper';
 import FieldInputWrapper from './field-input-wrapper';
 

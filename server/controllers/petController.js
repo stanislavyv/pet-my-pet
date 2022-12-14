@@ -102,9 +102,11 @@ routes.delete('/:id', authenticate(), isUserCreator(), (req, res) => {
     const id = req.params.id;
 
     try {
-        return deletePet(id);
+        return deletePet(id).then((result) => {
+            res.status(200).json(result);
+        });
     } catch (e) {
-        res.status(500).json({ message: 'Unable to delete pet.' });
+        return res.status(500).json({ message: 'Unable to delete pet.' });
     }
 });
 

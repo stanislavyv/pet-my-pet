@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import DashboardPetsList from './dashboard-pets-list.js';
+import DashboardPetsList from './dashboard-pets-list';
 
 const StyledDashboardListWrapper = styled.section`
     display: flex;

@@ -11,8 +11,8 @@ exports.validateDescription = [
     body('description')
         .notEmpty()
         .withMessage('Description cannot be empty')
-        .isLength({ min: 10, max: 50 })
-        .withMessage('Description must be between 10 and 50 characters')
+        .isLength({ min: 10, max: 100 })
+        .withMessage('Description must be between 10 and 100 characters')
         .escape(),
 ];
 

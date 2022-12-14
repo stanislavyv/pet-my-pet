@@ -1,9 +1,10 @@
-import { useAuth } from '../../../contexts/AuthContext';
+import { useSelector } from 'react-redux';
+import { selectUserState } from '../../../features/auth/userSlice';
 
 import PetButton from '../../buttons/pet-button';
 
 const OtherPetLoggedButton = ({ id, parentCallback, hasAlreadyLiked }) => {
-    const { isLoggedIn } = useAuth();
+    const { isLoggedIn } = useSelector(selectUserState)
 
     return (
         <>

@@ -3,10 +3,8 @@ import { device } from '../../../config/css';
 
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useCallback } from 'react';
 import { useRef } from 'react';
 
-// Loading only for pet list?
 const StyledSearchBar = styled.div`
     position: relative;
 

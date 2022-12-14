@@ -8,7 +8,7 @@ const IMAGE_URL_PATTERN = /^(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)$/;
 const USERNAME_PATTERN = /^[a-zA-Z0-9!@#$%^&*+\-_]{4,}$/;
 
 export const isDescriptionValid = (value) => {
-    return value.length >= 10 && value.length <= 50;
+    return value.length >= 10 && value.length <= 100;
 };
 
 export const isPetNameValid = (value) => {

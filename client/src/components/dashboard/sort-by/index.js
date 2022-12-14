@@ -34,7 +34,7 @@ const StyledSortBy = styled.section`
 `;
 
 const SortBy = () => {
-    const [selectedValue, setSelectedValue] = useState('default');
+    const [selectedValue, setSelectedValue] = useState('alphabetical');
     const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
@@ -49,7 +49,7 @@ const SortBy = () => {
 
     useEffect(() => {
         if (!searchParams.has('sort')) {
-            setSelectedValue('default');
+            setSelectedValue('alphabetical');
         }
     }, [searchParams]);
 
@@ -77,7 +77,7 @@ const SortBy = () => {
         <StyledSortBy>
             <label htmlFor="select">Sort by </label>
             <select name="select" onChange={handleChange} value={selectedValue}>
-                <option hidden value="default">
+                <option hidden value="alphabetical">
                     A-Z
                 </option>
                 {options.map((obj, key) => {
